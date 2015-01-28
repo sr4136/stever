@@ -113,6 +113,16 @@ function stever_scripts() {
 add_action( 'wp_enqueue_scripts', 'stever_scripts' );
 
 /**
+ * Enqueue admin styles.
+ */
+function stever_admin_styles(){
+	wp_enqueue_style( 'admin', get_template_directory_uri() . '/admin/admin.css' );
+}
+add_action( 'admin_print_styles', 'stever_admin_styles' );
+
+
+
+/**
  * Implement the Custom Header feature.
  */
 //require get_template_directory() . '/inc/custom-header.php';
@@ -133,6 +143,7 @@ require get_template_directory() . '/inc/extras.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
- * Load Jetpack compatibility file.
+ * Load Custom Post Types
  */
-require get_template_directory() . '/inc/jetpack.php';
+
+require get_template_directory() . '/inc/custom-post-types.php';

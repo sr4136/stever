@@ -1,0 +1,10 @@
+.post-type-event .cfs_input .field-start,
+.post-type-event .cfs_input .field-end,
+.post-type-event .cfs_input .field-type,
+.post-type-event .cfs_input .field-remote {
+	display: inline-block;
+	border-bottom: 0 none;
+}
+.post-type-event .cfs_input .field-links {
+	border-top: 1px solid #dfdfdf;
+}

@@ -64,7 +64,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.1', '<' ) ) :
 	 */
 	function stever_render_title() {
 		?>
-		<title><?php wp_title( '|', true, 'right' ); ?></title>
+		<title><?php wp_title( '|-', true, 'right' ); ?></title>
 		<?php
 	}
 	add_action( 'wp_head', 'stever_render_title' );
