@@ -839,4 +839,20 @@ object {
   display: block;
 }
 
+#map-container {
+  position: relative;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+#tooltip {
+  position: absolute;
+  border: 2px double #666666;
+  background: white;
+  padding: 5px 10px;
+}
+
 /*# sourceMappingURL=style.css.map */

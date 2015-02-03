@@ -5,6 +5,7 @@
  * @package SteveRudolfi
  */
 
+ 
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
@@ -109,17 +110,25 @@ function stever_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+	if( is_page_template( 'page-places.php' ) ){
+		wp_enqueue_style( 'stever-openlayers', get_template_directory_uri() . '/js/openlayers/ol.css' );
+		wp_enqueue_script( 'stever-openlayers', get_template_directory_uri() . '/js/openlayers/ol.js', ( 'jquery' ) );
+		wp_enqueue_script( 'stever-map', get_template_directory_uri() . '/js/openlayers/map.js', array( 'jquery', 'stever-openlayers' ) );
+	}
+	
+	
 }
 add_action( 'wp_enqueue_scripts', 'stever_scripts' );
 
 /**
- * Enqueue admin styles.
+ * Enqueue admin script and style.
  */
-function stever_admin_styles(){
-	wp_enqueue_style( 'admin', get_template_directory_uri() . '/admin/admin.css' );
-}
-add_action( 'admin_print_styles', 'stever_admin_styles' );
+function stever_admin_scripts_styles(){
 
+	wp_enqueue_style( 'admin', get_template_directory_uri() . '/admin/admin.css' );
+	wp_enqueue_script( 'admin', get_template_directory_uri() . '/admin/admin.js', array('jquery') );
+}
+add_action( 'admin_print_styles', 'stever_admin_scripts_styles' );
 
 
 /**
@@ -147,3 +156,71 @@ require get_template_directory() . '/inc/customizer.php';
  */
 
 require get_template_directory() . '/inc/custom-post-types.php';
+
+
+
+function add_info( $post_id, $post, $update ) {
+
+
+	$json = array();
+	$args = array(
+		'post_type'			=> 'place',
+		'posts_per_page'	=> -1
+	);
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) {
+	
+		$json = array();
+			$json['type'] = 'FeatureCollection';
+			
+			$features = array();
+	
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			
+			$the_lat = get_post_meta( get_the_ID(), 'latitude', true );
+			$the_lng = get_post_meta( get_the_ID(), 'longitude', true );
+			$the_name = get_the_title();
+			$the_address= get_post_meta( get_the_ID(), 'address', true );
+			$the_type = get_post_meta( get_the_ID(), 'type', true );
+			$the_count = get_post_meta( get_the_ID(), 'count', true );
+			
+			
+			
+			$set = array();
+				$set['type'] = 'Feature';
+			
+				$geometry = array();
+					$geometry['type'] = 'Point';
+					$geometry['coordinates'] = [$the_lng, $the_lat];
+				$set['geometry'] = $geometry;
+				
+				$properties = array();
+					$properties['name'] = $the_name;
+					$properties['address'] = $the_address;
+					$properties['type'] = $the_type;
+					$properties['count'] = $the_count;
+				$set['properties'] = $properties;
+			
+			array_push($features, $set);
+			
+		}
+		$json['features'] = $features;
+		
+	}
+	
+	/*
+	"type": "Feature",
+	"geometry": {"type": "Point", "coordinates": [-72.174790, 21.797286]},
+	"properties": {
+		"name": "Providenciales, Turks and Caicos",
+		"type": 	"Vacationed",
+		"length": 	"1 Week",
+		"count":	"1"
+	}
+	*/
+	
+	$file = ABSPATH . 'latest.json';
+	file_put_contents($file, json_encode($json));
+}
+add_action( 'save_post_place', 'add_info', 10, 3 );
