@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying all single posts.
+ * The template for displaying single event posts
  *
  * @package SteveRudolfi
  */
@@ -11,9 +11,8 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 		<?php while ( have_posts() ) : the_post(); ?>
-
-			<?php get_template_part( 'template-parts/content', 'single' ); ?>
-
+			<?php print_r( get_post_meta( get_the_id() ) ); ?>
+			<?php get_template_part( 'template-parts/content', 'event' ); ?>
 			<?php the_post_navigation(); ?>
 
 			<?php

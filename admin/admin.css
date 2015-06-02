@@ -1,10 +1,103 @@
+/* * * * * * * * * * * * * * * * * * * *
+ * Dashboard
+ * * * * * * * * * * * * * * * * * * * */
+#dashboard-widgets .linkview {
+	font-size: 18px;
+	line-height: 13px;
+	color: #666666;
+}
+#dashboard_widget_all_pages ul ul {
+	margin: 0 0 0 10px;
+}
+#dashboard_widget_all_pages ul li,
+#dashboard_widget_recently_updated ul li {
+	margin: 0;
+}
+#dashboard_widget_all_pages ul li a,
+#dashboard_widget_recently_updated ul li a {
+	display: inline-block;
+	margin: 3px 5px;
+}
+#dashboard_widget_all_pages ul li.count-even,
+#dashboard_widget_recently_updated ul li:nth-child(even) {
+	background-color: #F7F7F7;
+}
+#dashboard_widget_all_pages ul li.count-odd {
+	background-color: #FFFFFF;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * *
+ * Post Type: Event
+ * * * * * * * * * * * * * * * * * * * */
 .post-type-event .cfs_input .field-start,
 .post-type-event .cfs_input .field-end,
 .post-type-event .cfs_input .field-type,
-.post-type-event .cfs_input .field-remote {
+.post-type-event .cfs_input .field-remote,
+.post-type-event .cfs_input .field-affiliation,
+.post-type-event .cfs_input .field-link,
+.post-type-event .cfs_input .field-blog_link {
+	display: inline-block;
+	border-bottom: 0 none;
+	width: 19.3%;
+}
+.post-type-event .cfs_input .field-affiliation,
+.post-type-event .cfs_input .field-link,
+.post-type-event .cfs_input .field-blog-link {
+	width: 30%;
+	margin: 20px 0 5px 0;
+}
+.post-type-event .cfs_input .field-affiliation::before {
+	border-top: 1px solid #EEEEEE;
+    content: "";
+    display: block;
+    left: 0;
+    margin-top: -15px;
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+}
+
+/* * * * * * * * * * * * * * * * * * * *
+ * Post Type: Place
+ * * * * * * * * * * * * * * * * * * * */
+.post-type-place .cfs_input .field-latitude,
+.post-type-place .cfs_input .field-longitude {
+	display: inline-block;
+	width: 45%;
+}
+
+.post-type-place .cfs_input .field-type,
+.post-type-place .cfs_input .field-count {
+	display: inline-block;
+	border-bottom: 0 none;
+	width: 45%;
+}
+
+/* * * * * * * * * * * * * * * * * * * *
+ * Post Type: Book
+ * * * * * * * * * * * * * * * * * * * */
+.post-type-book .cfs_input .field-author,
+.post-type-book .cfs_input .field-completed,
+.post-type-book .cfs_input .field-type {
 	display: inline-block;
 	border-bottom: 0 none;
 }
-.post-type-event .cfs_input .field-links {
-	border-top: 1px solid #dfdfdf;
+.post-type-book .cfs_input .field-author {
+	width: 50%;
 }
+
+/* * * * * * * * * * * * * * * * * * * *
+ * Dashboard Icons
+ * * * * * * * * * * * * * * * * * * * */
+
+ #menu-posts-event .dashicons-admin-post:before {
+	 content: "\f508";
+ }
+ #menu-posts-place .dashicons-admin-post:before {
+	 content: "\f230";
+ }
+ #menu-posts-book .dashicons-admin-post:before {
+	 content: "\f331";
+ }
+

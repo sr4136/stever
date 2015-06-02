@@ -2,8 +2,6 @@
 /**
  * The template for displaying archive pages.
  *
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
- *
  * @package SteveRudolfi
  */
 
@@ -29,7 +27,7 @@ get_header(); ?>
 					 * If you want to override this in a child theme, then include a file
 					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 					 */
-					get_template_part( 'content', get_post_format() );
+					get_template_part( 'content', 'template-parts/' . get_post_format() );
 				?>
 
 			<?php endwhile; ?>
@@ -38,7 +36,7 @@ get_header(); ?>
 
 		<?php else : ?>
 
-			<?php get_template_part( 'content', 'none' ); ?>
+			<?php get_template_part( 'content', 'template-parts/' . 'none' ); ?>
 
 		<?php endif; ?>
 
