@@ -15,7 +15,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 SteveRudolfi is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
 
-Normalizing styles have been helped along thanks to the fine work of
+Normalizing styles have been helped along thanks to the fine work of 
 Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 */
 /*--------------------------------------------------------------
@@ -853,6 +853,10 @@ object {
   border: 2px double #666666;
   background: white;
   padding: 5px 10px;
+}
+
+body {
+  color: #FF0000 !important;
 }
 
 /*# sourceMappingURL=style.css.map */
