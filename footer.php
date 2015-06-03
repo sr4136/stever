@@ -12,7 +12,7 @@
 	<footer class="site-footer">
 		<?php get_template_part( 'template-parts/searchform' ); ?>
 		
-		<?php get_template_part( 'template-parts/socialicons' ); ?>
+		<?php wp_nav_menu( array( 'theme_location' => 'social' ) ); ?>
 		
 		<div class="site-info">
 			&copy; 2008 – <?php echo date('Y'); ?> SteveRudolfi.com

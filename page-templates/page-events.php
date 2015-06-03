@@ -14,6 +14,8 @@
 get_header(); ?>
 
 <?php
+	$queried_event = $_GET['ev'];
+	
 	function startYear($year) {
 		ob_start();
 		?>
@@ -64,6 +66,7 @@ get_header(); ?>
 							$affiliation = get_post_meta( get_the_id(), 'affiliation', true );
 							$link = get_post_meta( get_the_id(), 'link', true );
 							$blog_link = get_post_meta( get_the_id(), 'blog_link', true );
+							$active_event_markup = '';
 							
 							$date = date_parse_from_format('Y-m-d', $start);
 							$thisYear = $date['year'];
@@ -77,8 +80,10 @@ get_header(); ?>
 								echo( startYear( $thisYear ) );
 								$year_inc = $thisYear;
 							}	
-			
-							echo( '<tr>' );
+							if( $queried_event && $queried_event == get_the_id() ){
+								$active_event_markup = ' class="active"';
+							}
+							printf( "<tr %s id='%s'>", $active_event_markup, get_the_id() );
 								echo( '<td>' . get_the_title() . '</td>' );
 								echo( '<td>' . $type . '</td>' );
 								echo( '<td>' . $remote . '</td>' );
