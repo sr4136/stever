@@ -1,17 +1,12 @@
 /*
 Theme Name: SteveRudolfi
-Theme URI: http://underscores.me/
-Author: Automattic
-Author URI: http://automattic.com/
-Description: Hi. I'm a starter theme called <code>SteveRudolfi</code>, or <em>underscores</em>, if you like. I'm a theme meant for hacking so don't use me as a <em>Parent Theme</em>. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
-Version: 1.0.0
+Theme URI: http://steverudolfi.com
+Author: Steve Rudolfi
+Author URI: http://steverudolfi.com
+Description: A theme specifically for steverudolfi.com
+Version: 3.0.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: SteveRudolfi
-Tags: test
-
-This theme, like WordPress, is licensed under the GPL.
-Use it to make something cool, have fun, and share what you've learned with others.
 
 SteveRudolfi is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
 
@@ -19,30 +14,13 @@ Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 */
 /*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-1.0 Normalize
-2.0 Typography
-3.0 Elements
-4.0 Forms
-5.0 Navigation
-	5.1 Links
-	5.2 Menus
-6.0 Accessibility
-7.0 Alignments
-8.0 Clearings
-9.0 Widgets
-10.0 Content
-	10.1 Posts and pages
-	10.2 Asides
-	10.3 Comments
-11.0 Infinite scroll
-12.0 Media
-	12.1 Captions
-	12.2 Galleries
+1.0 Variables
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
-1.0 Normalize
+02 Mixins
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+03 Normalize
 --------------------------------------------------------------*/
 html {
   font-family: sans-serif;
@@ -261,7 +239,7 @@ th {
 }
 
 /*--------------------------------------------------------------
-2.0 Typography
+04 Typography
 --------------------------------------------------------------*/
 body,
 button,
@@ -336,7 +314,7 @@ big {
 }
 
 /*--------------------------------------------------------------
-3.0 Elements
+05 Elements
 --------------------------------------------------------------*/
 html {
   box-sizing: border-box;
@@ -409,7 +387,7 @@ table {
 }
 
 /*--------------------------------------------------------------
-4.0 Forms
+06 Forms
 --------------------------------------------------------------*/
 button,
 input[type="button"],
@@ -482,10 +460,7 @@ textarea {
 }
 
 /*--------------------------------------------------------------
-5.0 Navigation
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-5.1 Links
+07 Navigation (Links and Menus)
 --------------------------------------------------------------*/
 a {
   color: royalblue;
@@ -503,9 +478,6 @@ a:hover, a:active {
   outline: 0;
 }
 
-/*--------------------------------------------------------------
-5.2 Menus
---------------------------------------------------------------*/
 .main-navigation {
   clear: both;
   display: block;
@@ -585,7 +557,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-6.0 Accessibility
+08 Accessibility
 --------------------------------------------------------------*/
 /* Text meant only for screen readers. */
 .screen-reader-text {
@@ -617,7 +589,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-7.0 Alignments
+09 Alignments
 --------------------------------------------------------------*/
 .alignleft {
   display: inline;
@@ -638,7 +610,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-8.0 Clearings
+10 Clearings
 --------------------------------------------------------------*/
 .clear:before,
 .clear:after,
@@ -666,7 +638,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-9.0 Widgets
+11 Widgets
 --------------------------------------------------------------*/
 .widget {
   margin: 0 0 1.5em;
@@ -682,10 +654,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-10.0 Content
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-10.1 Posts and pages
+12 Content (Posts, Pages, Asides, Comments)
 --------------------------------------------------------------*/
 .sticky {
   display: block;
@@ -716,17 +685,11 @@ a:hover, a:active {
   margin: 0 0 1.5em;
 }
 
-/*--------------------------------------------------------------
-10.2 Asides
---------------------------------------------------------------*/
 .blog .format-aside .entry-title,
 .archive .format-aside .entry-title {
   display: none;
 }
 
-/*--------------------------------------------------------------
-10.3 Comments
---------------------------------------------------------------*/
 .comment-content a {
   word-wrap: break-word;
 }
@@ -736,7 +699,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-11.0 Infinite scroll
+13 Infinite scroll
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
 .infinite-scroll .posts-navigation,
@@ -751,7 +714,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-12.0 Media
+14 Media (Captions and Galleries)
 --------------------------------------------------------------*/
 .page-content .wp-smiley,
 .entry-content .wp-smiley,
@@ -769,9 +732,6 @@ object {
   max-width: 100%;
 }
 
-/*--------------------------------------------------------------
-12.1 Captions
---------------------------------------------------------------*/
 .wp-caption {
   margin-bottom: 1.5em;
   max-width: 100%;
@@ -789,9 +749,6 @@ object {
   text-align: center;
 }
 
-/*--------------------------------------------------------------
-12.2 Galleries
---------------------------------------------------------------*/
 .gallery {
   margin-bottom: 1.5em;
 }
@@ -839,6 +796,9 @@ object {
   display: block;
 }
 
+/*--------------------------------------------------------------
+15 Custom Nonsense
+--------------------------------------------------------------*/
 #map-container {
   position: relative;
 }

@@ -18,7 +18,7 @@
 	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<img id="site-title" src="" />
+				<img id="site-title" src="<?php echo( get_stylesheet_directory_uri() . '/img/logo.gif'); ?>" />
 				<h1 class="site-title"><?php bloginfo( 'name' ); ?></a></h1>
 			</a> 
 		</div><!-- .site-branding -->
