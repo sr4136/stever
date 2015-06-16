@@ -1,3 +1,23 @@
+/* Header */
+.site-branding h1 {
+	display: none;
+} 
+
+.site-branding,
+#site-navigation,
+.menu-social-container {
+	display: inline-block;
+}
+
+/* Home */
+.home .entry-header {
+	display: none;
+}
+.home section {
+	border: 2px dashed blue;
+}
+
+/* Map */
 #map-container {
 	position: relative;
 }

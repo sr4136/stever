@@ -4,6 +4,11 @@
  * @package SteveRudolfi
  */
 
+/* Constants */  
+define( 'EVENTSURL', home_url( '/' ) . 'about/events/' );
+
+
+/* Theme Init */
 function stever_setup() {
 
 	/* Add default posts and comments RSS feed links to head. */

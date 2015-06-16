@@ -10,8 +10,9 @@
  *
  * @package SteveRudolfi
  */
+?>
 
-get_header(); ?>
+<?php get_header(); ?>
 
 <?php
 	$queried_event = $_GET['ev'];

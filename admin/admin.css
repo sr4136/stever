@@ -1,4 +1,19 @@
 /* * * * * * * * * * * * * * * * * * * *
+ * Menu
+ * * * * * * * * * * * * * * * * * * * */
+#adminmenu #menu-posts-place,
+#adminmenu #menu-dashboard,
+#adminmenu #menu-settings {
+	margin-bottom: 20px;
+}
+
+@media all and (min-width: 783px) {
+	#adminmenu > li.wp-has-current-submenu.wp-menu-open .wp-submenu {
+		display: none;
+	}
+}
+
+/* * * * * * * * * * * * * * * * * * * *
  * Dashboard
  * * * * * * * * * * * * * * * * * * * */
 #dashboard-widgets .linkview {
@@ -26,6 +41,35 @@
 	background-color: #FFFFFF;
 }
 
+/* * * * * * * * * * * * * * * * * * * *
+ * Dashboard Icons
+ * * * * * * * * * * * * * * * * * * * */
+
+ #menu-posts-event .dashicons-admin-post:before {
+	 content: "\f508";
+ }
+ #menu-posts-place .dashicons-admin-post:before {
+	 content: "\f230";
+ }
+ #menu-posts-book .dashicons-admin-post:before {
+	 content: "\f331";
+ }
+
+
+/* * * * * * * * * * * * * * * * * * * *
+ * Post Type: Post
+ * * * * * * * * * * * * * * * * * * * */
+.cfs_input .field.field-is_gallery label,
+.cfs_input .field.field-is_portfolio label {
+	display: inline;
+	padding: 0 0 0 5px;
+}
+.cfs_input .field-is_gallery .cfs_true_false,
+.cfs_input .field-is_portfolio .cfs_true_false {
+	display: inline;
+	float: left;
+}
+ 
 
 /* * * * * * * * * * * * * * * * * * * *
  * Post Type: Event
@@ -87,17 +131,5 @@
 	width: 50%;
 }
 
-/* * * * * * * * * * * * * * * * * * * *
- * Dashboard Icons
- * * * * * * * * * * * * * * * * * * * */
 
- #menu-posts-event .dashicons-admin-post:before {
-	 content: "\f508";
- }
- #menu-posts-place .dashicons-admin-post:before {
-	 content: "\f230";
- }
- #menu-posts-book .dashicons-admin-post:before {
-	 content: "\f331";
- }
 

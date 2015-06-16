@@ -23,8 +23,4 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php stever_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

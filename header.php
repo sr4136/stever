@@ -28,6 +28,11 @@
 		</nav><!-- #site-navigation -->
 		
 		<?php wp_nav_menu( array( 'theme_location' => 'social' ) ); ?>
+		
+		
+		
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">
+	
+		<?php edit_post_link( __( 'Edit', 'stever' ), '<span class="edit-link">', '</span>' ); ?>

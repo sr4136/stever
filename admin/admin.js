@@ -1,5 +1,11 @@
 jQuery(function($) {
-	// only on place entry pages
+
+	/* Admin Menu Adjustment (TODO: media query-ish this)*/
+	$( '#adminmenu > li' ).on( 'mouseover', function(){
+		$( this ).removeClass( 'wp-menu-open' ).removeClass( 'wp-has-current-submenu' ).addClass( 'wp-not-current-submenu' );
+	} );
+
+	/* only on place entry pages */
 	if( $( 'body' ).hasClass( 'wp-admin' ) && $( 'body' ).hasClass( 'post-type-place' ) ){
 		$( '.field.field-address' ).append( '<button id="geocode">Geocode</button>' );
 		$( '#geocode' ).on( 'click', function(e){

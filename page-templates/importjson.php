@@ -4,6 +4,9 @@ Template Name: Import Json
 */
 ?>
 
+<?php /* TODO: Only run when a specific GET parameter exists */ ?>
+
+
 <?php
 $json = file_get_contents('http://steverudolfi.com/json');
 $obj = json_decode($json);

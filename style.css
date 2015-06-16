@@ -239,7 +239,74 @@ th {
 }
 
 /*--------------------------------------------------------------
-04 Typography
+04 Grid
+--------------------------------------------------------------*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.grid {
+  margin: 0 0 20px 0;
+  overflow: auto;
+}
+.grid:after {
+  content: "";
+  display: table;
+}
+
+.grid-pad {
+  margin: 0 0 20px 0;
+  padding: 20px 0 20px 20px;
+  overflow: auto;
+}
+.grid-pad [class*='col-']:last-of-type {
+  padding-right: 20px;
+}
+.grid-pad:after {
+  content: "";
+  display: table;
+}
+
+[class*='col-'] {
+  float: left;
+  padding-right: 20px;
+}
+.grid [class*='col-']:last-of-type {
+  padding-right: 0;
+}
+
+.col-1 {
+  width: 100%;
+}
+
+.col-3-4 {
+  width: 75%;
+}
+
+.col-2-3 {
+  width: 66.66%;
+}
+
+.col-1-3 {
+  width: 33.33%;
+}
+
+.col-1-2 {
+  width: 50%;
+}
+
+.col-1-4 {
+  width: 25%;
+}
+
+.col-1-8 {
+  width: 12.5%;
+}
+
+/*--------------------------------------------------------------
+05 Typography
 --------------------------------------------------------------*/
 body,
 button,
@@ -314,7 +381,7 @@ big {
 }
 
 /*--------------------------------------------------------------
-05 Elements
+06 Elements
 --------------------------------------------------------------*/
 html {
   box-sizing: border-box;
@@ -387,7 +454,7 @@ table {
 }
 
 /*--------------------------------------------------------------
-06 Forms
+07 Forms
 --------------------------------------------------------------*/
 button,
 input[type="button"],
@@ -460,7 +527,7 @@ textarea {
 }
 
 /*--------------------------------------------------------------
-07 Navigation (Links and Menus)
+08 Navigation (Links and Menus)
 --------------------------------------------------------------*/
 a {
   color: royalblue;
@@ -478,12 +545,6 @@ a:hover, a:active {
   outline: 0;
 }
 
-.main-navigation {
-  clear: both;
-  display: block;
-  float: left;
-  width: 100%;
-}
 .main-navigation ul {
   list-style: none;
   margin: 0;
@@ -557,7 +618,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-08 Accessibility
+09 Accessibility
 --------------------------------------------------------------*/
 /* Text meant only for screen readers. */
 .screen-reader-text {
@@ -589,7 +650,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-09 Alignments
+10 Alignments
 --------------------------------------------------------------*/
 .alignleft {
   display: inline;
@@ -610,7 +671,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-10 Clearings
+11 Clearings
 --------------------------------------------------------------*/
 .clear:before,
 .clear:after,
@@ -638,7 +699,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-11 Widgets
+12 Widgets
 --------------------------------------------------------------*/
 .widget {
   margin: 0 0 1.5em;
@@ -654,7 +715,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-12 Content (Posts, Pages, Asides, Comments)
+13 Content (Posts, Pages, Asides, Comments)
 --------------------------------------------------------------*/
 .sticky {
   display: block;
@@ -699,7 +760,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-13 Infinite scroll
+14 Infinite scroll
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
 .infinite-scroll .posts-navigation,
@@ -714,7 +775,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-14 Media (Captions and Galleries)
+15 Media (Captions and Galleries)
 --------------------------------------------------------------*/
 .page-content .wp-smiley,
 .entry-content .wp-smiley,
@@ -797,8 +858,29 @@ object {
 }
 
 /*--------------------------------------------------------------
-15 Custom Nonsense
+16 Custom Nonsense
 --------------------------------------------------------------*/
+/* Header */
+.site-branding h1 {
+  display: none;
+}
+
+.site-branding,
+#site-navigation,
+.menu-social-container {
+  display: inline-block;
+}
+
+/* Home */
+.home .entry-header {
+  display: none;
+}
+
+.home section {
+  border: 2px dashed blue;
+}
+
+/* Map */
 #map-container {
   position: relative;
 }
