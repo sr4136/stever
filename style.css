@@ -662,6 +662,7 @@ a:hover, a:active {
   display: inline;
   float: right;
   margin-left: 1.5em;
+  margin-bottom: 1.5em;
 }
 
 .aligncenter {
@@ -860,6 +861,11 @@ object {
 /*--------------------------------------------------------------
 16 Custom Nonsense
 --------------------------------------------------------------*/
+/* General */
+.border-lt {
+  border: 1px dotted #CCCCCC;
+}
+
 /* Header */
 .site-branding h1 {
   display: none;
