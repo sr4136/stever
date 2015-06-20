@@ -289,6 +289,14 @@ th {
   width: 66.66%;
 }
 
+.col-5-8 {
+  width: 62.5%;
+}
+
+.col-3-8 {
+  width: 37.5%;
+}
+
 .col-1-3 {
   width: 33.33%;
 }
@@ -901,10 +909,6 @@ object {
   border: 2px double #666666;
   background: white;
   padding: 5px 10px;
-}
-
-body {
-  color: #FF0000 !important;
 }
 
 .page-template-page-events tr.active {

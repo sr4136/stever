@@ -17,22 +17,119 @@
 	
 	<section id="featured-portfolio" class="grid-pad">
 		<h2>Featured Portfolio Items</h2>
+			<?php
+			$portfolio_args = array(
+				'post_type'			=> 'post',
+				'post_status' => array( 'publish' ),
+				'posts_per_page'	=> 3,
+				'meta_key' 			=> '_is_portfolio',
+				'meta_value'		=> 1
+			);
+			$portfolio_query = new WP_Query( $portfolio_args );
+			?>
+			<?php if( $portfolio_query->have_posts() ): ?>
+				<?php while ( $portfolio_query->have_posts() ) : $portfolio_query->the_post(); ?>
+					<?php
+						$post_index = $portfolio_query->current_post;
+						$thumb_size = ( $post_index == 0 ) ? 'medium' : 'thumbnail';
+						$thumb_id = get_post_thumbnail_id( $post->ID );
+						$thumb_details = wp_get_attachment_image_src( $thumb_id, $thumb_size );
+					?>
+					<?php if( $post_index == 0 ): ?>
+						<div class="col-5-8">
+							<article class="featured">
+								<a href="<?php echo( get_the_permalink() ); ?>">
+									<?php if( $thumb_id ): ?>
+										<img src="<?php echo( $thumb_details[0] ); ?>" />
+									<?php endif; ?>
+									<h3><?php echo( get_the_title() ); ?></h3>
+								</a>
+								<?php the_excerpt(); ?>
+							</article>
+						</div>
+						<div class="col-3-8">
+					<?php else: ?>
+						<article>
+							<a href="<?php echo( get_the_permalink() ); ?>">
+								<?php if( $thumb_id ): ?>
+									<img src="<?php echo( $thumb_details[0] ); ?>" />
+								<?php endif; ?>
+								<h3><?php echo( get_the_title() ); ?></h3>
+							</a>
+							<?php the_excerpt(); ?>
+						</article>
+					<?php endif; ?>
+				<?php endwhile; ?>
+				</div>
+			<?php endif; ?>
+			<?php wp_reset_postdata(); ?>
 	</section>
 	
 	<section id="latest-blogs" class="grid-pad">
 		<h2>Latest Blog Posts</h2>
+		<?php
+			$blog_args = array(
+				'post_type'			=> 'post',
+				'post_status' 		=> array( 'publish' ),
+				'posts_per_page'	=> 5,
+				'meta_query'		=> array(
+					'relation' 		=> 'OR',
+					array(
+						'key'		=> '_is_portfolio',
+						'compare'	=> 'NOT EXISTS'
+					),
+					array(
+						'key'		=> '_is_portfolio',
+						'value'		=> 0
+					)
+				)
+			);
+			$blog_query = new WP_Query( $blog_args );
+			?>
+			<?php if( $blog_query->have_posts() ): ?>
+				<?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
+					<?php 
+						$post_index = $blog_query->current_post;
+						$thumb_size = ( $post_index == 0 ) ? 'medium' : 'thumbnail';
+						$thumb_details = wp_get_attachment_image_src( $thumb_id, 'medium' );
+					?>
+					<?php if( $post_index == 0 ): ?>
+						<div class="col-3-8">
+							<article class="featured">
+								<a href="<?php echo( get_the_permalink() ); ?>">
+									<?php if( $thumb_id ): ?>
+										<img src="<?php echo( $thumb_details[0] ); ?>" />
+									<?php endif; ?>
+									<h3><?php echo( get_the_title() ); ?></h3>
+								</a>
+								<?php the_excerpt(); ?>
+							</article>
+						</div>
+						<div class="col-5-8">
+					<?php else: ?>
+						<article>
+							<a href="<?php echo( get_the_permalink() ); ?>">
+								<h3><?php echo( get_the_title() ); ?></h3>
+							</a>
+						</article>
+					<?php endif; ?>
+				<?php endwhile; ?>
+				</div>
+			<?php endif; ?>
+			<?php wp_reset_postdata(); ?>
 	</section>
-	
+	    
 	<section id="latest-activity" class="grid-pad">
 		<h2>Latest Activity</h2>
-		<div id="latest-events" class="col-3-4">
+		<div id="latest-events" class="col-2-3">
 			<h3>Conferences, Meetups, Events, Speaking</h3>
 			<?php
-			$args = array(
+			$events_args = array(
 				'post_type' => 'event',
+				'post_status' => array( 'publish' ),
 				'posts_per_page' => 5
 			);
-			$events_query = new WP_Query( $args );
+			$events_query = new WP_Query( $events_args );
 			?>
 			<?php if( $events_query->have_posts() ): ?>
 				<ul>
@@ -48,7 +145,7 @@
 			<?php endif; ?>
 			<?php wp_reset_postdata(); ?>
 		</div>
-		<div id="latest-tweets" class="col-1-4">
+		<div id="latest-tweets" class="col-1-3">
 			<h3>Tweets</h3>
 			<?php get_template_part( 'template-parts/tweetlist' ); ?>
 		</div>

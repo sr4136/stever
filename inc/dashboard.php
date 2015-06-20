@@ -115,3 +115,31 @@ function add_dashboard_widgets() {
 
 // Register the new dashboard widget with the 'wp_dashboard_setup' action
 add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
+
+
+
+
+
+function stever_add_post_columns($columns) {
+    return array_merge( $columns, array( 
+		'portfolio' => __( 'Portfolio' ),
+         )
+	);
+}
+add_filter('manage_posts_columns' , 'stever_add_post_columns');
+
+
+
+
+function stever_post_column_content( $column, $post_id ) {
+    switch ( $column ) {
+
+	case 'portfolio' :
+		if( get_post_meta( $post_id , '_is_portfolio' , true ) == true ){
+			echo( 'yes' );
+		}
+	    break;
+    }
+}
+
+add_action( 'manage_posts_custom_column' , 'stever_post_column_content', 10, 2 );

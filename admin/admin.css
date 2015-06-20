@@ -59,15 +59,22 @@
 /* * * * * * * * * * * * * * * * * * * *
  * Post Type: Post
  * * * * * * * * * * * * * * * * * * * */
-.cfs_input .field.field-is_gallery label,
-.cfs_input .field.field-is_portfolio label {
+.cfs_input .field.field-_is_gallery,
+.cfs_input .field.field-_is_portfolio {
+	border: 0 none;
+}
+.cfs_input .field.field-_is_gallery label,
+.cfs_input .field.field-_is_portfolio label {
 	display: inline;
 	padding: 0 0 0 5px;
 }
-.cfs_input .field-is_gallery .cfs_true_false,
-.cfs_input .field-is_portfolio .cfs_true_false {
+.cfs_input .field-_is_gallery .cfs_true_false,
+.cfs_input .field-_is_portfolio .cfs_true_false {
 	display: inline;
 	float: left;
+}
+.cfs_input .field.field-_is_portfolio {
+	padding-bottom: 0;
 }
  
 
