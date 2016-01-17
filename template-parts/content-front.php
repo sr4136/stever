@@ -11,19 +11,17 @@
 		<h1>SteveRudolfi.com</h1>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content" class="grid-pad">
-		<?php the_content(); ?>
-	</div><!-- .entry-content -->
-	
 	<section id="featured-portfolio" class="grid-pad">
 		<h2>Featured Portfolio Items</h2>
 			<?php
+			
+			$features = get_post_meta( get_the_id(), '_hp_featured_portfolio_items' );
+			
 			$portfolio_args = array(
-				'post_type'			=> 'post',
-				'post_status' => array( 'publish' ),
-				'posts_per_page'	=> 3,
-				'meta_key' 			=> '_is_portfolio',
-				'meta_value'		=> 1
+				'post_type'		=> 'post',
+				'post_status'	=> array( 'publish' ),
+				'post__in'		=> $features,
+				'orderby'			=> 'post__in'
 			);
 			$portfolio_query = new WP_Query( $portfolio_args );
 			?>
@@ -31,7 +29,7 @@
 				<?php while ( $portfolio_query->have_posts() ) : $portfolio_query->the_post(); ?>
 					<?php
 						$post_index = $portfolio_query->current_post;
-						$thumb_size = ( $post_index == 0 ) ? 'medium' : 'thumbnail';
+						$thumb_size = ( $post_index == 0 ) ? 'full' : 'medium';
 						$thumb_id = get_post_thumbnail_id( $post->ID );
 						$thumb_details = wp_get_attachment_image_src( $thumb_id, $thumb_size );
 					?>
@@ -43,7 +41,7 @@
 										<img src="<?php echo( $thumb_details[0] ); ?>" />
 									<?php endif; ?>
 									<h3><?php echo( get_the_title() ); ?></h3>
-								</a>
+								</a>	
 								<?php the_excerpt(); ?>
 							</article>
 						</div>
@@ -56,6 +54,7 @@
 								<?php endif; ?>
 								<h3><?php echo( get_the_title() ); ?></h3>
 							</a>
+							<?php add_filter( 'excerpt_length', 'stever_smaller_excerpt_length', 999 ); ?>
 							<?php the_excerpt(); ?>
 						</article>
 					<?php endif; ?>
@@ -71,7 +70,7 @@
 			$blog_args = array(
 				'post_type'			=> 'post',
 				'post_status' 		=> array( 'publish' ),
-				'posts_per_page'	=> 5,
+				'posts_per_page'	=> 8,
 				'meta_query'		=> array(
 					'relation' 		=> 'OR',
 					array(
@@ -94,7 +93,7 @@
 						$thumb_details = wp_get_attachment_image_src( $thumb_id, 'medium' );
 					?>
 					<?php if( $post_index == 0 ): ?>
-						<div class="col-3-8">
+						<div class="col-1-2">
 							<article class="featured">
 								<a href="<?php echo( get_the_permalink() ); ?>">
 									<?php if( $thumb_id ): ?>
@@ -103,17 +102,22 @@
 									<h3><?php echo( get_the_title() ); ?></h3>
 								</a>
 								<?php the_excerpt(); ?>
+								<?php remove_filter( 'excerpt_length', 'stever_smaller_excerpt_length', 999 ); ?>
 							</article>
 						</div>
-						<div class="col-5-8">
+						<div class="col-1-2">
+							<ul>
 					<?php else: ?>
-						<article>
-							<a href="<?php echo( get_the_permalink() ); ?>">
-								<h3><?php echo( get_the_title() ); ?></h3>
-							</a>
-						</article>
+						<li>
+							<h3>
+								<a href="<?php echo( get_the_permalink() ); ?>">
+									<?php echo( get_the_title() ); ?>
+								</a>
+							</h3>
+						</li>
 					<?php endif; ?>
 				<?php endwhile; ?>
+					</ul>
 				</div>
 			<?php endif; ?>
 			<?php wp_reset_postdata(); ?>
@@ -122,7 +126,7 @@
 	<section id="latest-activity" class="grid-pad">
 		<h2>Latest Activity</h2>
 		<div id="latest-events" class="col-2-3">
-			<h3>Conferences, Meetups, Events, Speaking</h3>
+			<h3><a href="<?php echo( get_post_type_archive_link( 'event' ) ); ?>">Conferences, Meetups, Events, Speaking</a></h3>
 			<?php
 			$events_args = array(
 				'post_type' => 'event',
@@ -136,9 +140,7 @@
 				<?php while ( $events_query->have_posts() ) : $events_query->the_post(); ?>
 					<li>
 						<span><?php the_time('m/d/y'); ?></span>
-						<a href="<?php echo( EVENTSURL . "?ev=" . get_the_id() ); ?>">
 							<?php the_title(); ?>
-						</a>
 					</li>
 				<?php endwhile; ?>
 				</ul>
@@ -146,7 +148,7 @@
 			<?php wp_reset_postdata(); ?>
 		</div>
 		<div id="latest-tweets" class="col-1-3">
-			<h3>Tweets</h3>
+			<h3><a href="/tweetnest">Tweets</a></h3>
 			<?php get_template_part( 'template-parts/tweetlist' ); ?>
 		</div>
 	

@@ -1,7 +1,7 @@
 body,
 button,
 input,
-select,
+select, 
 textarea {
 	color: $color__text-main;
 	font-family: $font__main;
@@ -11,6 +11,9 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
 	clear: both;
+	padding: 0;
+	margin: 0;
+	font-family: $font__heading;
 }
 
 p {

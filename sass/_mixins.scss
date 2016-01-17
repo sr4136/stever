@@ -1,29 +1,89 @@
-// Rem output with px fallback
+/* Rem output with px fallback */
 @mixin font-size($sizeValue: 1) {
 	font-size: ($sizeValue * 16) + px;
 	font-size: $sizeValue + rem;
 }
 
-// Center block
+/* Center block */
 @mixin center-block {
 	display: block;
 	margin-left: auto; 
 	margin-right: auto;
 }
 
-// Clearfix
+/* Clearfix */
 @mixin clearfix() {
 	content: "";
 	display: table;
 }
 
-// Clear after (not all clearfix need this also)
+/* Clear after (not all clearfix need this) */
 @mixin clearfix-after() {
 	clear: both;
 }
 
+/* Box Sizing */
 @mixin box-sizing($type){
   -webkit-box-sizing: $type;
   -moz-box-sizing: $type;
   box-sizing: $type;
+}
+
+/* Box-shadow */
+@mixin box-shadow($top, $left, $blur, $color) {
+	-webkit-box-shadow: $top $left $blur $color;
+	-moz-box-shadow: $top $left $blur $color;
+	box-shadow: $top $left $blur $color;
+}
+/* No box-shadow */
+@mixin no-box-shadow() {
+	-webkit-box-shadow: unset;
+	-moz-box-shadow: unset;
+	box-shadow: unset;  
+}
+
+/* Border-radius */
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	border-radius: $radius;
+}
+
+/* BG Sprite */
+/* Assumed offset -10, -10 and hover/next is -50
+ */
+@mixin sprite-bg($index, $hover:false) {
+	background-position: -10px -#{10+$index*50}px;
+	@if $hover == true{
+		&:hover {
+			color: #FFFFFF;
+			background-position: -60px -#{10+$index*50}px;
+		}
+	}
+}
+
+
+
+
+/* Breakpoints */
+/* https://medium.com/developing-with-sass/creating-a-dead-simple-sass-mixin-to-handle-responsive-breakpoints-889927b37740 */
+@mixin breakpoint($class) {
+  @if $class == xs {
+    @media (max-width: 767px) { @content; }
+  }
+ 
+  @else if $class == sm {
+    @media (min-width: 768px) { @content; }
+  }
+ 
+  @else if $class == md {
+    @media (min-width: 992px) { @content; }
+  }
+ 
+  @else if $class == lg {
+    @media (min-width: 1200px) { @content; }
+  }
+ 
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
 }

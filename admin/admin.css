@@ -77,6 +77,21 @@
 	padding-bottom: 0;
 }
  
+ 
+.cfs_input .field.field-_gallery_repeat .cfs_loop .loop_wrapper {
+	display: inline-block;
+	vertical-align: top;
+}
+.cfs_input .field.field-_gallery_repeat .cfs_file {
+	text-align: center;
+}
+.cfs_input .field.field-_gallery_repeat .cfs_file .file_url {
+	display: block;
+	margin-bottom: 12px;
+}
+.cfs_input .field.field-_gallery_repeat .cfs_file .file_url img {
+	max-width: 100%;
+}
 
 /* * * * * * * * * * * * * * * * * * * *
  * Post Type: Event

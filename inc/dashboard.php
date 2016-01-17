@@ -118,7 +118,7 @@ add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
 
 
 
-
+/* Adding Columns to Admin Post listing - Meta Info */
 
 function stever_add_post_columns($columns) {
     return array_merge( $columns, array( 
@@ -127,9 +127,6 @@ function stever_add_post_columns($columns) {
 	);
 }
 add_filter('manage_posts_columns' , 'stever_add_post_columns');
-
-
-
 
 function stever_post_column_content( $column, $post_id ) {
     switch ( $column ) {
