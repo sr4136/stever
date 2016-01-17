@@ -66,13 +66,16 @@ add_action( 'wp_enqueue_scripts', 'stever_scripts' );
 
 /* Custom end of excerpt */
 function stever_excerpt_more( $more ) {
-	return '<a href="'. get_the_permalink() . '"> ...</a>';
+	return ' <a href="'. get_the_permalink() . '">&hellip;</a>';
 }
 add_filter( 'excerpt_more', 'stever_excerpt_more' );
 
-/* Smaller excerpt length */ 
-function stever_smaller_excerpt_length( $length ) {
+/* Custom excerpt lengths */ 
+function stever_excerpt_length_20( $length ) {
 	return 20;
+}
+function stever_excerpt_length_40($length) {
+	return 40;
 }
 
 /* Different Image Dimensions */

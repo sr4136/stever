@@ -41,9 +41,12 @@ if($result) {
 				$tweet = 'RT @' . $extra['rt']['screenname'] . ' ';
 				$tweet .= $extra['rt']['text'];
 			}
-			if (substr($tweet, 0, 2) === 'RT'){
-				$tweet = '<span class="rt">RT</span> ' . substr($tweet, 2);
+
+			if (substr($tweet, 0, 3) === 'RT '){
+				$tweet = '<span class="rt">RT</span> ' . substr($tweet, 3);
 			}
+
+
 			echo( sprintf( '<li %s>%s</li>', $addClass, makeItTweet( $tweet ) ) );
 	
 		}

@@ -10,20 +10,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 SteveRudolfi is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
 
-Normalizing styles have been helped along thanks to the fine work of 
-Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+Normalizing styles via http://necolas.github.com/normalize.css/
+
 */
 /*--------------------------------------------------------------
-01 Font Imports
---------------------------------------------------------------*/
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
-@import url(http://fonts.googleapis.com/css?family=Gentium+Basic:400,700italic,400italic,700);
-/*--------------------------------------------------------------
-02 Variables
+01 Variables
 --------------------------------------------------------------*/
 /* Variables I'm Using */
 /*--------------------------------------------------------------
-03 Mixins
+02 Mixins
 --------------------------------------------------------------*/
 /* Rem output with px fallback */
 /* Center block */
@@ -39,8 +34,10 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 /* Breakpoints */
 /* https://medium.com/developing-with-sass/creating-a-dead-simple-sass-mixin-to-handle-responsive-breakpoints-889927b37740 */
 /*--------------------------------------------------------------
-04 Normalize
+03 Normalize
 --------------------------------------------------------------*/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
+@import url(http://fonts.googleapis.com/css?family=Gentium+Basic:400,700italic,400italic,700);
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -268,7 +265,7 @@ ul, ol {
 }
 
 /*--------------------------------------------------------------
-05 Grid
+04 Grid
 --------------------------------------------------------------*/
 * {
   -webkit-box-sizing: border-box;
@@ -343,7 +340,7 @@ ul, ol {
 }
 
 /*--------------------------------------------------------------
-06 Typography
+05 Typography
 --------------------------------------------------------------*/
 body,
 button,
@@ -421,7 +418,7 @@ big {
 }
 
 /*--------------------------------------------------------------
-07 Elements
+06 Elements
 --------------------------------------------------------------*/
 html {
   box-sizing: border-box;
@@ -489,9 +486,6 @@ table {
   width: 100%;
 }
 
-/*--------------------------------------------------------------
-08 Forms
---------------------------------------------------------------*/
 button,
 input[type="button"],
 input[type="reset"],
@@ -563,7 +557,7 @@ textarea {
 }
 
 /*--------------------------------------------------------------
-09 Navigation (Links and Menus)
+07 Navigation (Links and Menus)
 --------------------------------------------------------------*/
 a {
   color: #C1552D;
@@ -644,39 +638,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-10 Accessibility
---------------------------------------------------------------*/
-/* Text meant only for screen readers. */
-.screen-reader-text {
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-}
-.screen-reader-text:hover, .screen-reader-text:active, .screen-reader-text:focus {
-  background-color: #f1f1f1;
-  border-radius: 3px;
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-  clip: auto !important;
-  color: #21759b;
-  display: block;
-  font-size: 14px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  height: auto;
-  left: 5px;
-  line-height: normal;
-  padding: 15px 23px 14px;
-  text-decoration: none;
-  top: 5px;
-  width: auto;
-  z-index: 100000;
-  /* Above WP toolbar. */
-}
-
-/*--------------------------------------------------------------
-11 Alignments
+08 Alignments
 --------------------------------------------------------------*/
 .alignleft {
   display: inline;
@@ -697,9 +659,6 @@ a:hover, a:active {
   margin-right: auto;
 }
 
-/*--------------------------------------------------------------
-12 Clearings
---------------------------------------------------------------*/
 .clear:before,
 .clear:after,
 .entry-content:before,
@@ -726,23 +685,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-13 Widgets
---------------------------------------------------------------*/
-.widget {
-  margin: 0 0 1.5em;
-  /* Make sure select elements fit in widgets. */
-}
-.widget select {
-  max-width: 100%;
-}
-
-/* Search widget. */
-.widget_search .search-submit {
-  display: none;
-}
-
-/*--------------------------------------------------------------
-14 Content (Posts, Pages, Asides, Comments)
+09 Site (Posts, Pages, Asides, Comments, Widgets)
 --------------------------------------------------------------*/
 #page {
   max-width: 1024px;
@@ -791,24 +734,19 @@ a:hover, a:active {
   display: block;
 }
 
-/*--------------------------------------------------------------
-15 Infinite scroll
---------------------------------------------------------------*/
-/* Globally hidden elements when Infinite Scroll is supported and in use. */
-.infinite-scroll .posts-navigation,
-.infinite-scroll.neverending .site-footer {
-  /* Theme Footer (when set to scrolling) */
+.widget {
+  margin: 0 0 1.5em;
+  /* Make sure select elements fit in widgets. */
+}
+.widget select {
+  max-width: 100%;
+}
+
+/* Search widget. */
+.widget_search .search-submit {
   display: none;
 }
 
-/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before. */
-.infinity-end.neverending .site-footer {
-  display: block;
-}
-
-/*--------------------------------------------------------------
-16 Media (Captions and Galleries)
---------------------------------------------------------------*/
 .page-content .wp-smiley,
 .entry-content .wp-smiley,
 .comment-content .wp-smiley {
@@ -890,7 +828,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-17 Custom Nonsense
+10 Custom Nonsense
 --------------------------------------------------------------*/
 /* General */
 .border-lt {
@@ -1060,7 +998,7 @@ ol, ul {
 .home #content ul {
   font-size: 1rem;
   margin: 0.75rem 0;
-  padding: 0 1rem;
+  padding: 0 0 0 1rem;
   list-style: none;
 }
 
@@ -1115,7 +1053,7 @@ h1 a:active {
 }
 
 .home #content img {
-  border: 1px solid #404040;
+  border: 1px solid #666666;
 }
 
 .home #latest-tweets .rt {
@@ -1237,14 +1175,15 @@ h1 a:active {
 /* Footer */
 footer {
   background-color: #FFFFFF;
+  overflow: hidden;
 }
 
 .searchform {
-  float: left;
   padding: 21px 23px;
 }
 
 .searchform input {
+  width: 65%;
   padding: 3px 12px;
 }
 
@@ -1255,11 +1194,14 @@ footer {
 }
 
 footer .menu-social-container {
-  float: right;
-  width: auto;
   -webkit-box-shadow: unset;
   -moz-box-shadow: unset;
   box-shadow: unset;
+  padding: 20px 0;
+}
+
+footer .menu-social-container ul {
+  float: right;
 }
 
 .site-info {

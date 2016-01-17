@@ -127,7 +127,7 @@ ol, ul {
 .home #content ul {
 	font-size: 1rem;
 	margin: 0.75rem 0;  
-	padding: 0 1rem;  
+	padding: 0 0 0 1rem;  
 	list-style: none;
 } 
 .home #content li {
@@ -172,7 +172,7 @@ h1 a:active {
 	margin-bottom: 24px;
 }
 .home #content img {
-	border: 1px solid #404040;
+	border: 1px solid #666666;
 }
 .home #latest-tweets .rt {
 	background-image: url('img/sprite.png');
@@ -278,15 +278,16 @@ h1 a:active {
 	display: none;
 }
 
-/* Footer */
+/* Footer */ 
 footer {
 	background-color: #FFFFFF;
+	overflow: hidden;
 }
 .searchform {
-	float: left;
 	padding: 21px 23px;
 }
 .searchform input {
+	width: 65%;
 	padding: 3px 12px;
 }
 .searchform .submit {
@@ -295,10 +296,13 @@ footer {
 	vertical-align: top;
 }
 footer .menu-social-container {
-	float: right;
-	width: auto;
 	@include no-box-shadow;
+	padding: 20px 0;
 }
+footer .menu-social-container ul {
+	float: right; 
+}
+
 .site-info {
 	background-color: $color__background-page;
 	text-align: center;

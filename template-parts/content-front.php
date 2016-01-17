@@ -54,8 +54,9 @@
 								<?php endif; ?>
 								<h3><?php echo( get_the_title() ); ?></h3>
 							</a>
-							<?php add_filter( 'excerpt_length', 'stever_smaller_excerpt_length', 999 ); ?>
+							<?php add_filter( 'excerpt_length', 'stever_excerpt_length_20' ); ?>
 							<?php the_excerpt(); ?>
+							<?php remove_filter( 'excerpt_length', 'stever_excerpt_length_20' ); ?>
 						</article>
 					<?php endif; ?>
 				<?php endwhile; ?>
@@ -70,7 +71,7 @@
 			$blog_args = array(
 				'post_type'			=> 'post',
 				'post_status' 		=> array( 'publish' ),
-				'posts_per_page'	=> 8,
+				'posts_per_page'	=> 6,
 				'meta_query'		=> array(
 					'relation' 		=> 'OR',
 					array(
@@ -101,8 +102,12 @@
 									<?php endif; ?>
 									<h3><?php echo( get_the_title() ); ?></h3>
 								</a>
-								<?php the_excerpt(); ?>
-								<?php remove_filter( 'excerpt_length', 'stever_smaller_excerpt_length', 999 ); ?>
+								<?php 
+									add_filter( 'excerpt_length', 'stever_excerpt_length_40' );
+									the_excerpt();
+									remove_filter( 'excerpt_length', 'stever_excerpt_length_40' );
+								 ?>
+								
 							</article>
 						</div>
 						<div class="col-1-2">
@@ -131,7 +136,7 @@
 			$events_args = array(
 				'post_type' => 'event',
 				'post_status' => array( 'publish' ),
-				'posts_per_page' => 5
+				'posts_per_page' => 7
 			);
 			$events_query = new WP_Query( $events_args );
 			?>
@@ -139,8 +144,7 @@
 				<ul>
 				<?php while ( $events_query->have_posts() ) : $events_query->the_post(); ?>
 					<li>
-						<span><?php the_time('m/d/y'); ?></span>
-							<?php the_title(); ?>
+						<span><?php the_time('m/d/y'); ?></span> - <?php the_title(); ?>
 					</li>
 				<?php endwhile; ?>
 				</ul>
