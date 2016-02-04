@@ -4,14 +4,13 @@
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="grid-pad">
-		<?php echo( stever_show_is_portfolio() ); ?>
+	<?php echo( stever_show_is_portfolio() ); ?>
 		<header class="entry-header">
 			<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
 			<?php edit_post_link(); ?>
 		</header><!-- .entry-header -->
-
 	
+	<div class="grid-pad">
 		<div class="entry-content col-1">
 			<?php
 				/* translators: %s: Name of current post */
@@ -29,12 +28,10 @@
 			?>
 		</div><!-- .entry-content -->
 		
-		<footer class="entry-footer col-1">
-			<?php if ( 'post' == get_post_type() ) : ?>
-			<div class="entry-meta">
+		<?php if ( 'post' == get_post_type() ) : ?>
+			<footer class="entry-meta col-1">
 				<?php echo( stever_show_entry_meta() ); ?>
-			</div><!-- .entry-meta -->
-			<?php endif; ?>
-		</footer><!-- .entry-footer -->
+			</footer><!-- .entry-footer -->
+		<?php endif; ?>
 	</div>
 </article><!-- #post-## -->

@@ -116,7 +116,7 @@ function stever_show_entry_meta(){
 	$ret_str = '';
 	
 	/* Date */
-	$ret_str .= '<div class="date">Posted on: ' . get_the_time('F j, Y') . '</div>';
+	$ret_str .= '<div class="date">Posted on: <date>' . get_the_time('F j, Y') . '</date></div>';
 	
 	/* Categories */
 	$cats = get_the_category();
