@@ -11,6 +11,10 @@ ol, ul {
 	padding-left: 1em;
 }
 
+.entry-header {
+	position: relative;
+}
+
 #page {
 	background: $color__background-page;
 	@include box-shadow( 0, 5px, 20px, rgba( 50,50,50,.75) );
@@ -110,11 +114,21 @@ ol, ul {
 	content: '';
 }
 
+#content ul {
+	margin-bottom: 1.5em;
+}
+#content ul ul {
+	margin-top: .75em;
+	margin-bottom: .75em;
+}
+#content li {
+	margin-bottom: .75em;
+}
 
 /* Home */
 .home{
 	section [class*="col-"] {
-		padding-top: 24px;
+		padding-top: $pad;
 	}
 	.entry-header {
 		display: none;
@@ -284,7 +298,8 @@ h1,
 /* Embeds */
 .insta {
 	overflow: hidden;
-	margin: 0 0 $pad 0;
+	margin: 0 0 $pad $pad;
+	float: right;
 }
 .insta [class*="col-"]:last-of-type {
 	padding-right: $pad;
@@ -328,4 +343,94 @@ footer .menu-social-container ul {
 	text-align: center;
 	padding: 6px 0;
 	clear: both;
+}
+
+/* Plugins */
+
+.collapseomatic {
+	position: relative;
+	cursor: pointer;
+	font-family: $font__heading;
+	background-position: 75px 2px;
+	padding: 0 20px 0 5px;
+	font-size: 0.8em;
+	font-weight: bold;
+	border: 1px solid #A0A0A0;
+	color: #333333;
+	@include border-radius(3px);
+	background-color: #F1F1F1;
+	margin-left: 5px;
+	
+	&:after {
+		content: "+";
+		font-weight: normal;
+		font-size: 1.3rem;
+		padding: 0 5px;
+		position: absolute;
+		top: -1px;
+		right: -2px;
+		line-height: .9;
+	}
+}
+.colomat-close::after {
+	content: "-";
+	top: -3px;
+	right: 0;
+}
+
+.responsive-video {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+	margin-bottom: $pad;
+}
+ 
+.responsive-video iframe,
+.responsive-video object,
+.responsive-video embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.tweetlist {
+	margin: 10px 0 20px 0;
+
+
+	.tweet {
+		border-bottom: 1px dotted #AAAAAA;
+		padding: 20px 0;
+		overflow: auto;
+	}
+
+	.rt {
+		background: url("/tweetnest/styles/streamlined/retweet.gif") no-repeat scroll left center rgba(0, 0, 0, 0);
+		padding: 0 0 0 23px;
+	}
+	.pic {
+		float: left;
+		margin-right: 20px;
+		max-height: 85px;
+	}
+	.pic img {
+		margin: 0;
+		width: 85px;
+	}
+}
+.tweetlist .tweet .via, .tweetlist .tweet.retweet .meta br , .tweetlist .tweet .rted{
+	display: none;
+}
+.tweetlist.tweet:last-child {
+	border-bottom: 0 none;
+}
+.tweetlist p {
+	padding-left: 105px;
+	margin-bottom: 0;
+}
+.tweetlist p:empty {
+	display: none;
 }

@@ -163,14 +163,18 @@
 	counter-increment: extra;
 	content: counter(extra) ": ";
 }
-.field-extra_content .cfs_loop .cfs_loop_body > label:first-of-type {
-	display: none;
-}
-
 .field-extra_content .cfs_loop .cfs_loop_body .cfs_true_false {
 	float: left;
 	padding: 0 5px 0 0;
 }
 .field-extra_content .cfs_loop .cfs_loop_body label:nth-of-type(2){
-	padding: 1px 0 5px 0;
+	display: none;
+}
+.field-_extra_include_title {
+	float: left;
+	margin-top: 2px;
+}
+.field-_extra_title {
+	float: left;
+	width: 97%;
 }

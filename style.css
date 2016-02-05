@@ -147,7 +147,7 @@ svg:not(:root) {
 }
 
 figure {
-  margin: 1em 40px;
+  margin: 0;
 }
 
 hr {
@@ -391,12 +391,14 @@ pre {
   max-width: 100%;
   overflow: auto;
   padding: 1.6em;
+  clear: both;
 }
 
 code, kbd, tt, var {
   font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
   font-size: 15px;
   font-size: 0.9375rem;
+  clear: both;
 }
 
 abbr, acronym {
@@ -767,20 +769,52 @@ object {
 .wp-caption {
   margin-bottom: 1.5em;
   max-width: 100%;
+  padding: 6px;
+  background: #F1F1F1;
 }
-.wp-caption img[class*="wp-image-"] {
+.wp-caption img {
+  border: 1px solid #666666;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 .wp-caption .wp-caption-text {
   margin: 0.8075em 0;
-}
-
-.wp-caption-text {
   text-align: center;
 }
 
+.half-captions,
+.half-insta {
+  overflow: auto;
+  margin-bottom: 30px;
+}
+.half-captions br,
+.half-insta br {
+  display: none;
+}
+.half-captions .wp-caption,
+.half-captions iframe,
+.half-insta .wp-caption,
+.half-insta iframe {
+  margin: 0px;
+  width: 48.5% !important;
+  float: left;
+}
+.half-captions .wp-caption:last-child,
+.half-captions iframe:last-child,
+.half-insta .wp-caption:last-child,
+.half-insta iframe:last-child {
+  float: right;
+}
+
+@media only screen and (max-width: 767px) {
+  .half-captions .wp-caption,
+  .half-insta iframe {
+    width: 100% !important;
+    float: none;
+    margin-bottom: 12px;
+  }
+}
 .gallery {
   margin-bottom: 1.5em;
 }
@@ -828,6 +862,23 @@ object {
   display: block;
 }
 
+.posts-navigation {
+  background-color: #B6C951;
+  overflow: auto;
+  padding: 12px 24px;
+}
+.posts-navigation h2 {
+  text-align: center;
+}
+.posts-navigation .nav-links {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.emoji {
+  width: 14px;
+}
+
 /*--------------------------------------------------------------
 10 Custom Nonsense
 --------------------------------------------------------------*/
@@ -844,6 +895,10 @@ h1 a:active {
 
 ol, ul {
   padding-left: 1em;
+}
+
+.entry-header {
+  position: relative;
 }
 
 #page {
@@ -967,9 +1022,22 @@ ol, ul {
   content: '';
 }
 
+#content ul {
+  margin-bottom: 1.5em;
+}
+
+#content ul ul {
+  margin-top: .75em;
+  margin-bottom: .75em;
+}
+
+#content li {
+  margin-bottom: .75em;
+}
+
 /* Home */
 .home section [class*="col-"] {
-  padding-top: 24px;
+  padding-top: 20px;
 }
 .home .entry-header {
   display: none;
@@ -1146,7 +1214,8 @@ h1 a:hover,
 /* Embeds */
 .insta {
   overflow: hidden;
-  margin: 0 0 20px 0;
+  margin: 0 0 20px 20px;
+  float: right;
 }
 
 .insta [class*="col-"]:last-of-type {
@@ -1199,6 +1268,97 @@ footer .menu-social-container ul {
   text-align: center;
   padding: 6px 0;
   clear: both;
+}
+
+/* Plugins */
+.collapseomatic {
+  position: relative;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  background-position: 75px 2px;
+  padding: 0 20px 0 5px;
+  font-size: 0.8em;
+  font-weight: bold;
+  border: 1px solid #A0A0A0;
+  color: #333333;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #F1F1F1;
+  margin-left: 5px;
+}
+.collapseomatic:after {
+  content: "+";
+  font-weight: normal;
+  font-size: 1.3rem;
+  padding: 0 5px;
+  position: absolute;
+  top: -1px;
+  right: -2px;
+  line-height: .9;
+}
+
+.colomat-close::after {
+  content: "-";
+  top: -3px;
+  right: 0;
+}
+
+.responsive-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.responsive-video iframe,
+.responsive-video object,
+.responsive-video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tweetlist {
+  margin: 10px 0 20px 0;
+}
+.tweetlist .tweet {
+  border-bottom: 1px dotted #AAAAAA;
+  padding: 20px 0;
+  overflow: auto;
+}
+.tweetlist .rt {
+  background: url("/tweetnest/styles/streamlined/retweet.gif") no-repeat scroll left center transparent;
+  padding: 0 0 0 23px;
+}
+.tweetlist .pic {
+  float: left;
+  margin-right: 20px;
+  max-height: 85px;
+}
+.tweetlist .pic img {
+  margin: 0;
+  width: 85px;
+}
+
+.tweetlist .tweet .via, .tweetlist .tweet.retweet .meta br, .tweetlist .tweet .rted {
+  display: none;
+}
+
+.tweetlist.tweet:last-child {
+  border-bottom: 0 none;
+}
+
+.tweetlist p {
+  padding-left: 105px;
+  margin-bottom: 0;
+}
+
+.tweetlist p:empty {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

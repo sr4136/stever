@@ -1,6 +1,7 @@
 <?php
 /**
  * @package SteveRudolfi
+ * Template partial used to render single posts on index listing
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

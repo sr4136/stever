@@ -1,13 +1,14 @@
 <?php
 /**
  * @package SteveRudolfi
+ * Template partial used to render single posts.
  */
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-asd;lfkajs;lfj
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<?php edit_post_link(); ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content grid-pad">

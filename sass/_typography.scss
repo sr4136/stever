@@ -48,11 +48,13 @@ pre {
 	max-width: 100%;
 	overflow: auto;
 	padding: 1.6em;
+	clear: both;
 }
 
 code, kbd, tt, var {
 	font-family: $font__code;
 	@include font-size(0.9375);
+	clear: both;
 }
 
 abbr, acronym {

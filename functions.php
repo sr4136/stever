@@ -42,6 +42,11 @@ function stever_admin_scripts_styles(){
 }
 add_action( 'admin_print_styles', 'stever_admin_scripts_styles' );
 
+/* Editor (TinyMCE) Styles */
+function stever_editor_styles() {
+    add_editor_style( 'admin/editor.css' );
+}
+add_action( 'admin_init', 'stever_editor_styles' );
 
 
 /* Enqueue scripts and styles. */
@@ -109,8 +114,6 @@ function disable_wp_emojicons() {
 	add_filter( 'tiny_mce_plugins', 'disable_emojicons_tinymce' );
 }
 add_action( 'init', 'disable_wp_emojicons' );
-
-
 
 /* Template tags */
 require get_template_directory() . '/inc/template-tags.php';

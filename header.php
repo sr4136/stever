@@ -23,7 +23,7 @@
 		<div id="site-branding">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 				<img id="site-title" src="<?php echo( get_stylesheet_directory_uri() . '/img/logo.png'); ?>" />
-				<h1 class="site-title"><?php bloginfo( 'name' ); ?></a></h1>
+				<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
 			</a> 
 		</div><!-- .site-branding -->
 		
