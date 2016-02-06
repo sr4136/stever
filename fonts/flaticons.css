@@ -1,0 +1,10 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("flaticons/flaticon.eot");
+	src: url("flaticons/flaticon.eot#iefix") format("embedded-opentype"),
+	url("flaticons/flaticon.woff") format("woff"),
+	url("flaticons/flaticon.ttf") format("truetype"),
+	url("flaticons/flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}

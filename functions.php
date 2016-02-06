@@ -31,6 +31,8 @@ function stever_setup() {
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
 	) );
 	
+	add_image_size( 'small', 150, 150, false );
+	
 	
 }
 add_action( 'after_setup_theme', 'stever_setup' );
@@ -60,9 +62,9 @@ function stever_scripts() {
 		wp_enqueue_script( 'stever-map', get_template_directory_uri() . '/js/openlayers/map.js', array( 'jquery', 'stever-openlayers' ) );
 	}
 	
-	if( is_single() ){
-		wp_enqueue_script( 'stever-scripts', get_template_directory_uri() . '/js/scripts.js', array( 'jquery' ) );
-	}
+	
+	wp_enqueue_script( 'stever-scripts', get_template_directory_uri() . '/js/scripts.js', array( 'jquery' ) );
+	
 	
 	
 }

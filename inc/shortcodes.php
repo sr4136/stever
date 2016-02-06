@@ -4,6 +4,14 @@
  * @package SteveRudolfi
  */
 
+/* Enqueues a font */
+function sr_font( $atts ) {
+	$font =  $atts[0];
+	wp_enqueue_style( $font, get_stylesheet_directory_uri() . '/fonts/' . $font . '.css' );
+}
+add_shortcode( 'font', 'sr_font' );
+ 
+ 
 /* Pulls content from a repeatable metabox by that box's index */
 function sr_extra_content( $atts ) {
 	$the_id =  $atts[ 'id' ];
@@ -12,6 +20,7 @@ function sr_extra_content( $atts ) {
 	$is_expandable = get_post_meta( get_the_id(), '_expandable')[ $the_id ];
 
 	$title = '';
+	$after_content = '';
 	$before_outer = '';
 	$after_outer = '';
 	$before_inner = '';
@@ -29,14 +38,21 @@ function sr_extra_content( $atts ) {
 		$before_inner = '<code><pre>';
 		$content = htmlentities( $content );
 		$after_inner = '</pre></code>';
+	}else if( $type == 'imgwall' ){
+		wp_enqueue_script( 'freewall', get_template_directory_uri () . '/js/freewall.js', array( 'jquery' ) );
+		$before_inner = '<div class="' . $type . '">';
+		$after_inner = '</div>';
+		//$after_content = postgal( get_the_id() );
+	}else if( $type == 'code-exec' ){
+		$content = $content;
 	}else if( $type !== 'blank' ){
 		$before_inner = '<div class="' . $type . '">';
 		$after_inner = '</div>';
 	}else {
-		$content = nl2br( $content );
+		$content = wpautop( $content );
 	}
 	
-	return do_shortcode( $title . $before_outer . $before_inner . $content . $after_inner . $after_outer );
+	return do_shortcode( $title . $before_outer . $before_inner . $content . $after_inner . $after_outer . $after_content );
 }
 add_shortcode( 'extra', 'sr_extra_content' );
 
@@ -47,7 +63,7 @@ function sr_responsive_youtube( $atts ) {
 	$ret_str = '<div class="responsive-video"><iframe width="560" height="315" src="https://www.youtube.com/embed/' . $the_id . '" frameborder="0" allowfullscreen></iframe></div>';
 	return  $ret_str ;
 }
-add_shortcode( 'responsive_youtube', 'sr_responsive_youtube' );
+add_shortcode( 'youtube', 'sr_responsive_youtube' );
 
 
 /* Embeds Instagram photos/videos */
@@ -59,3 +75,49 @@ function sr_instagram( $atts ) {
 	return  $ret_str ;
 }
 add_shortcode( 'instagram', 'sr_instagram' );
+
+
+
+/* Gallery (Hijacking WP Gallery) */
+remove_shortcode('gallery', 'gallery_shortcode');
+
+function sr_gallery_shortcode( $attr ) {
+	$img_ids = explode( ',', $attr["ids"] );
+	$first_id = $img_ids[0];
+	$ret_str = '<div class="imgwall" data-pair="' . $first_id . '">';
+	
+		wp_enqueue_script( 'responsiveslides', get_template_directory_uri () . '/js/responsiveslides.min.js', array( 'jquery' ) );
+		wp_enqueue_script( 'freewall', get_template_directory_uri () . '/js/freewall.js', array( 'jquery' ) );
+		
+		foreach( $img_ids as $img_id ){
+			$img_src = wp_get_attachment_image_src( $img_id, 'small' );
+			$ret_str .= '<li><img src="' . $img_src[0] . '" data-id="' . $img_id . '" /></li>';
+		}
+	
+	$ret_str .= '</div>';
+	
+	ob_start();
+	?>
+	<div class="postGal hidden" data-pair="<?php echo( $first_id ); ?>">
+		<div class="close">[close]</div>
+		<div class="content">
+			<ul class="rslides">
+				<?php
+				foreach( $img_ids as $img_id ){
+					$img_src = wp_get_attachment_image_src( $img_id, 'full' );
+					echo( '<li><img src="' . $img_src[0] . '" data-id="' . $img_id . '" /></li>' );
+				}
+				?>
+			</ul>
+		</div>
+		<div class="close bottom">[close]</div>
+	</div>
+	
+	<?php
+	$output = ob_get_contents();
+	ob_end_clean();
+	
+	$ret_str .= $output;
+	return $ret_str;
+}
+add_shortcode( 'gallery', 'sr_gallery_shortcode' );

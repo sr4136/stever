@@ -18,6 +18,11 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	font-family: $font__heading;
 }
+.site-content {
+	h1, h2, h3, h4, h5, h6{
+		margin-bottom: 12px;
+	}
+}
 
 p {
 	margin-bottom: 1.5em;

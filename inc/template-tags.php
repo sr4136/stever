@@ -152,6 +152,41 @@ function stever_show_entry_meta(){
 
 
 
+function postgal( $postID ){
+	$args = array(
+		'post_mime_type' => 'image',
+		'post_parent' => $postID,
+		'post_status' => null,
+		'post_type' => 'attachment',
+	);
+
+	$attachments = get_children( $args );
+	ob_start();
+
+	?>
+	<div class="postGal hidden">
+		<div class="close">[close]</div>
+			<div class="content">
+				<div class="slider">
+					<ul class="rslides">
+						<?php
+						foreach ( $attachments as $attachment ) {
+							$attachment_id = $attachment->ID;
+							$attachment_url = $attachment->guid;
+							echo("<li><img src='$attachment_url' data-id='$attachment_id' /></li>");
+						}
+						?>
+					</ul>
+			</div>
+			<!-- /.slider -->
+			</div>
+		<!-- /.content -->
+		<div class="close bottom">[close]</div>
+	</div>
+<?php
+	return ob_get_contents();
+}
+
 
 
 

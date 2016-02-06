@@ -26,7 +26,7 @@ ol, ul {
 	width: $pad;
 	height: $pad;
 	position: absolute;
-	top: $pad;
+	bottom: $pad;
 	right: $pad;
 }
 
@@ -114,15 +114,19 @@ ol, ul {
 	content: '';
 }
 
-#content ul {
-	margin-bottom: 1.5em;
-}
-#content ul ul {
-	margin-top: .75em;
-	margin-bottom: .75em;
-}
-#content li {
-	margin-bottom: .75em;
+#content{
+	ul, ol {
+		margin: -1em 0 1em 2em;
+		
+		ul, ol {
+			margin-top: .5em;
+			margin-bottom: .5em;
+			list-style-type: "- ";
+		}
+	}
+	li {
+		margin-bottom: .5em;
+	}
 }
 
 /* Home */
@@ -243,7 +247,7 @@ h1,
 	height: 1.5em;
 }
 .entry-meta {
-	margin-top: 12px;
+	margin-top: 40px;
 	background: none;
 	padding-top: 12px;
 	border-top: 1px solid #FFFFFF;
@@ -421,6 +425,9 @@ footer .menu-social-container ul {
 		width: 85px;
 	}
 }
+.tweetlist.single {
+	border-top: 1px dotted #AAAAAA;
+}
 .tweetlist .tweet .via, .tweetlist .tweet.retweet .meta br , .tweetlist .tweet .rted{
 	display: none;
 }
@@ -434,3 +441,115 @@ footer .menu-social-container ul {
 .tweetlist p:empty {
 	display: none;
 }
+
+
+.postGal {
+	margin: 30px 0;
+	background-image: url("img/stripes.png");
+	position: relative;
+	.content {
+		position: relative;
+	}
+	.close {
+		cursor: pointer;
+		color: #F1F1F1;
+		padding: 7.5px 10px;
+		position: absolute;
+		right: 0;
+		z-index: 1000;
+		top: 0;
+	}
+	.close.bottom {
+		top: auto;
+		bottom: 0;
+	}
+}
+
+.imgwall li {
+	list-style-type: none;
+	
+	img {
+		cursor: pointer;
+	}
+}
+
+#content {
+	.rslides {
+		position: relative;
+		list-style: none;
+		overflow: hidden;
+		width: 100%;
+		padding: 40px 0;
+		margin: 0;
+		
+		li {
+			-webkit-backface-visibility: hidden;
+			position: absolute;
+			display: none;
+			width: 100%;
+			left: 0;
+			top: 0;
+		}
+		li:first-child {
+			position: relative;
+			display: block;
+			float: left;
+		}
+		img {
+			display: block;
+			height: auto;
+			float: left;
+			width: 100%;
+			border: 0;
+		}
+	}
+	.rslides_tabs {
+		text-align: center;
+		margin: 0;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 999;
+		
+		li {
+			display: inline-block;
+			border: 3px solid #FFFFFF;
+			background-color: #666666;
+			@include border-radius(20px);
+			height: 20px;
+			width: 20px;
+			margin: 0 5px 0 5px;
+			
+			a {
+				display: block;
+				text-indent: -9999px;
+				overflow: hidden;
+				outline: 0;
+			}
+		}
+		
+		.rslides_here {
+			background-color: #FFFFFF;
+		}
+	}
+	.rslides_nav, .rslides_nav:visited, .rslides_nav:active, .rslides_nav:focus {
+		display: block;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		z-index: 10;
+		text-indent: -9999px;
+		overflow: hidden;
+		width: 50px;
+		outline: 0;
+	}
+	.rslides_nav:hover {
+		outline: 0;
+		background-color:rgba(0,0,0,0.3);
+	}
+	.rslides_nav.next {
+		right: 0;
+	}
+}
+
+

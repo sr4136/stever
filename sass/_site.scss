@@ -9,7 +9,9 @@
 .hentry {
 	margin: 0 0 1.5em;
 }
- 
+.hidden {
+	display: none;
+}
 
 .byline,
 .updated:not(.published){

@@ -16,3 +16,16 @@
 .half-captions img {
 	margin-right: 3%;
 } 
+
+/* WP Gallery Items */
+.wpview-type-gallery {
+	border: 1px solid #666666;
+	background-color: #F1F1F1;
+	padding-left: 12px;
+}
+.gallery .gallery-item {
+	width: 120px !important;
+}
+.gallery br {
+	display: none;
+}
