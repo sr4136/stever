@@ -72,7 +72,8 @@ if ( ! isset( $content_width ) ) {
 
 // Thumbnail sizes
 add_image_size( 'bones-thumb-600', 600, 150, true );
-add_image_size( 'bones-thumb-300', 300, 100, true );
+add_image_size( 'bones-thumb-300', 300, 200, true );
+add_image_size( 'bones-thumb-200', 200, 150, true );
 
 /*
 to add more sizes, simply copy a line from above
@@ -99,7 +100,8 @@ add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );
 function bones_custom_image_sizes( $sizes ) {
     return array_merge( $sizes, array(
         'bones-thumb-600' => __('600px by 150px'),
-        'bones-thumb-300' => __('300px by 100px'),
+        'bones-thumb-300' => __('300px by 200px'),
+		'bones-thumb-200' => __('200px by 100px')
     ) );
 }
 
@@ -241,5 +243,15 @@ function bones_fonts() {
 }
 
 add_action('wp_enqueue_scripts', 'bones_fonts');
+
+
+
+
+// add admin css
+function stever_admin_css(){
+	wp_enqueue_style( 'admin_css', get_stylesheet_directory_uri() . '/library/css/admin.css' );
+}
+add_action( 'admin_print_styles', 'stever_admin_css' );
+
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

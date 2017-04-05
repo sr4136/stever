@@ -110,6 +110,7 @@ H1, H2, H3, H4, H5 STYLES
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 	text-rendering: optimizelegibility;
 	font-weight: 500;
+	margin: 0 0 1em 0;
 	/*
 	if you're going to use webfonts, be sure to check your weights
 	http://css-tricks.com/watch-your-font-weight/
@@ -134,6 +135,7 @@ h2, .h2 {
 
 h3, .h3 {
 	font-size: 1.125em;
+	font-weight: bold;
 }
 
 h4, .h4 {
@@ -266,6 +268,9 @@ POSTS & CONTENT STYLES
 		header {
 			border-bottom: 1px solid $light-gray;
 			padding: 1.5em;
+			h1 {
+				margin: 0;
+			}
 		}
 
 		footer {
@@ -314,7 +319,7 @@ POSTS & CONTENT STYLES
 
 	/* entry content */
 	.entry-content {
-		padding: 1.5em 1.5em 0;
+		padding: 1.5em;
 
 		p {
 			margin: 0 0 1.5em;
@@ -823,12 +828,23 @@ COMMENT FORM STYLES
 SIDEBARS & ASIDES
 *********************/
 
-.sidebar {}
+.sidebar {
+	&.view-options {
+		p {
+			margin-top: 0;
+		}
+	}
+}
 
 	.widgettitle {}
 
 	.widget {
-
+		h3 {
+			margin-top: 0;
+			font-size: 1em;
+			font-weight: bold;
+		}
+	
 		ul {
 
 			li {
@@ -845,17 +861,37 @@ SIDEBARS & ASIDES
 			}
 
 		}
-
+		a {
+			font-weight: bold;
+		}
+		
+		.gallery-imgs {
+			a {
+				display: block;	
+				margin-bottom: 1em;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+			img {
+				border: 1px solid #666;
+				display: block;
+			}
+		}
+		
+ 
 	}
 
-	.no-widgets {
+	.no-widgets,
+	.widget	{
 		background-color: $white;
-		padding: 1.5em;
+		padding: 1em;
 		text-align: center;
 		border: 1px solid $border-color;
 		border-radius: 2px;
-		margin-bottom: 1.5em;
+		margin-bottom: 1em;
 	}
+	
 
 /*********************
 FOOTER STYLES

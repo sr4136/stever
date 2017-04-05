@@ -1,0 +1,25 @@
+/* CSS for the Admin area*/
+.field-images {
+	position: relative;
+}
+.cfs_input .field-images .cfs_loop_toggle {
+	position: absolute;
+	bottom: 12px;
+	right: 12px;
+}
+.field-images .loop_wrapper {
+	width: 200px;
+	display: inline-block;
+	vertical-align: top;
+}
+.cfs_input .field.field-images .loop_wrapper label {
+	display: none;
+}
+.field-images .loop_wrapper .button.remove,
+.field-images .loop_wrapper .button.add {
+	display: block;
+	margin: 10px auto 0 auto;
+}
+.field-images .cfs_file .file_url img {
+	max-width: 100%;
+}

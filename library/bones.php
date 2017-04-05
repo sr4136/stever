@@ -128,6 +128,11 @@ function bones_scripts_and_styles() {
 
 		// ie-only style sheet
 		wp_register_style( 'bones-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
+		
+		// BaguetteBox (lightbox) Script & Style
+		wp_register_style( 'fancybox', get_stylesheet_directory_uri() . '/library/js/libs/fancybox/jquery.fancybox.min.css', array(), '' );
+		wp_register_script( 'fancybox', get_stylesheet_directory_uri() . '/library/js/libs/fancybox/jquery.fancybox.min.js', array(), '', true );
+		
 
     // comment reply script for threaded comments
     if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
@@ -135,12 +140,13 @@ function bones_scripts_and_styles() {
     }
 
 		//adding scripts file in the footer
-		wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
+		wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js?v=9324', array( 'jquery', 'fancybox' ), '99', true );
 
 		// enqueue styles and scripts
 		wp_enqueue_script( 'bones-modernizr' );
 		wp_enqueue_style( 'bones-stylesheet' );
 		wp_enqueue_style( 'bones-ie-only' );
+		wp_enqueue_style( 'fancybox' );
 
 		$wp_styles->add_data( 'bones-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
 
@@ -151,7 +157,8 @@ function bones_scripts_and_styles() {
 		*/
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'bones-js' );
-
+		wp_enqueue_script( 'baguettebox' );
+		
 	}
 }
 
@@ -188,7 +195,7 @@ function bones_theme_support() {
 	// to add header image support go here: http://themble.com/support/adding-header-background-image-support/
 
 	// adding post format support
-	add_theme_support( 'post-formats',
+	/*add_theme_support( 'post-formats',
 		array(
 			'aside',             // title less blurb
 			'gallery',           // gallery of images
@@ -200,7 +207,7 @@ function bones_theme_support() {
 			'audio',             // audio
 			'chat'               // chat transcript
 		)
-	);
+	);*/
 
 	// wp menus
 	add_theme_support( 'menus' );

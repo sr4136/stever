@@ -93,7 +93,15 @@ var timeToWaitForLast = 100;
 */
 jQuery(document).ready(function($) {
 
-
-
+	$( '[data-fancybox]' ).fancybox({
+		closeBtn   : true
+	});
+	
+	$( '.more-images' ).on( 'click', function( event ){
+		event.preventDefault();
+		$( '.gallery-imgs a' ).removeClass( 'hidden' );
+		$( this ).addClass( 'hidden' );
+		//$( '.gallery-imgs a' ).eq( 4 ).click();
+	} );
 
 }); /* end of as page load scripts */
