@@ -27,7 +27,6 @@ function bones_ahoy() {
   // let's get language support going, if you need it
   load_theme_textdomain( 'bonestheme', get_template_directory() . '/library/translation' );
 
-
   // launching operation cleanup
   add_action( 'init', 'bones_head_cleanup' );
   // A better title
@@ -62,6 +61,14 @@ function bones_ahoy() {
 add_action( 'after_setup_theme', 'bones_ahoy' );
 
 
+// admin stylesheet
+function load_custom_wp_admin_style() {
+	wp_register_style( 'custom_wp_admin_css', get_template_directory_uri() . '/library/css/admin.css', false, '1.0.5' );
+	wp_enqueue_style( 'custom_wp_admin_css' );
+}
+add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+
+
 /************* OEMBED SIZE OPTIONS *************/
 
 if ( ! isset( $content_width ) ) {
@@ -72,7 +79,7 @@ if ( ! isset( $content_width ) ) {
 
 // Thumbnail sizes
 add_image_size( 'bones-thumb-600', 600, 150, true );
-add_image_size( 'bones-thumb-300', 300, 100, true );
+add_image_size( 'bones-thumb-300', 300, 200, true );
 
 /*
 to add more sizes, simply copy a line from above
@@ -241,5 +248,60 @@ function bones_fonts() {
 }
 
 add_action('wp_enqueue_scripts', 'bones_fonts');
+
+function wpdocs_register_my_custom_menu_page() {
+    add_menu_page(
+        'Portfolio Items',
+        'Portfolio Items',
+        'manage_options',
+        'edit.php?category_name=portfolio',
+        '',
+        'dashicons-star-filled',
+        6
+    );
+}
+add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
+
+
+function icon_function( $atts ) {
+	$type = $atts[0];
+
+	if( $type ){
+		$labels = array(
+			'meetup' => array(
+				'label' => 'Meetup',
+				'class' => 'lightbulb-o',
+			),
+			'conference' => array(
+				'label' => 'Conference',
+				'class' => 'group',
+			),
+			'webinar' => array(
+				'label' => 'Webinar',
+				'class' => 'keyboard-o',
+			),
+			'remote' => array(
+				'label' => 'Remote Conference/Meetup',
+				'class' => 'laptop',
+			),
+		);
+
+		if( $labels[ $type ] ){
+			return ( "<i title='{$labels[ $type ]['label']}' class='fa fa-{$labels[ $type ]['class']}'></i>" );
+		}
+
+	}
+	return;
+}
+add_shortcode( 'i', 'icon_function' );
+
+
+
+
+
+
+
+
+
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

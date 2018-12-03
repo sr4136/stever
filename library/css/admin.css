@@ -1,0 +1,73 @@
+/* CSS for the Admin area*/
+.field-images {
+	position: relative;
+}
+.cfs_input .field-images .cfs_loop_toggle {
+	position: absolute;
+	bottom: 12px;
+	right: 12px;
+}
+.field-images .loop_wrapper {
+	width: 200px;
+	display: inline-block;
+	vertical-align: top;
+}
+.cfs_input .field.field-images .loop_wrapper label {
+	display: none;
+}
+.field-images .loop_wrapper .button.remove,
+.field-images .loop_wrapper .button.add {
+	display: block;
+	margin: 10px auto 0 auto;
+}
+.field-images .cfs_file .file_url img {
+	max-width: 100%;
+}
+
+
+/* Custom Dashboard Widgets */
+#dashboard-widgets .linkview {
+	float: right;
+	font-size: 0.8em;
+}
+
+#dashboard_widget_all_pages ul li,
+#dashboard_widget_recently_updated ul li {
+	margin: 0;
+}
+#dashboard_widget_all_pages ul li a,
+#dashboard_widget_recently_updated ul li a {
+	display: inline-block;
+	margin: 3px 5px;
+}
+#dashboard_widget_all_pages ul li.count-even,
+#dashboard_widget_recently_updated ul li:nth-child(even) {
+	background-color: #F7F7F7;
+}
+#dashboard_widget_all_pages ul li.count-odd {
+	background-color: #FFFFFF;
+}
+
+#dashboard_widget_unfinished_posts table {
+	width: 100%;
+	border-spacing: 0;
+    border-collapse: separate;
+}
+#dashboard_widget_unfinished_posts tr {
+	padding: 3px 0;
+}
+#dashboard_widget_unfinished_posts tr:nth-child(even) td {
+	background-color: #F7F7F7;
+}
+#dashboard_widget_unfinished_posts tr td {
+	padding: 2px 0;
+}
+#dashboard_widget_unfinished_posts tr td:first-child {
+	padding-left: 5px;
+}
+
+
+.post-state .\30 .states {
+	float: right;
+	opacity: 0.3;
+}

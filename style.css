@@ -597,7 +597,7 @@ p {
 
 /* makes the font 33% larger relative to the icon container */
 .fa-lg {
-  font-size: 1.33333em;
+  font-size: 1.3333333333em;
   line-height: 0.75em;
   vertical-align: -15%;
 }
@@ -619,13 +619,13 @@ p {
 }
 
 .fa-fw {
-  width: 1.28571em;
+  width: 1.2857142857em;
   text-align: center;
 }
 
 .fa-ul {
   padding-left: 0;
-  margin-left: 2.14286em;
+  margin-left: 2.1428571429em;
   list-style-type: none;
 }
 .fa-ul > li {
@@ -634,13 +634,13 @@ p {
 
 .fa-li {
   position: absolute;
-  left: -2.14286em;
-  width: 2.14286em;
-  top: 0.14286em;
+  left: -2.1428571429em;
+  width: 2.1428571429em;
+  top: 0.1428571429em;
   text-align: center;
 }
 .fa-li.fa-lg {
-  left: -1.85714em;
+  left: -1.8571428571em;
 }
 
 .fa-border {
@@ -3631,6 +3631,10 @@ For more info on functions, go here:
 http://sass-lang.com/documentation/Sass/Script/Functions.html
 
 ******************************************************************/
+.hidden {
+  display: none !important;
+}
+
 /*********************
 COLOR FUNCTIONS
 These are helpful when you're working
@@ -4477,6 +4481,7 @@ LINK STYLES
 *********************/
 a, a:visited {
   color: #C1552D;
+  text-decoration: none;
   /* on hover */
   /* on click */
   /* mobile tap color */
@@ -4493,12 +4498,17 @@ a:link, a:visited:link {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
 }
 
+#container a:hover {
+  text-decoration: underline;
+}
+
 /******************************************************************
 H1, H2, H3, H4, H5 STYLES
 ******************************************************************/
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
   text-rendering: optimizelegibility;
   font-weight: 500;
+  margin: 0 0 1em 0;
   /*
   if you're going to use webfonts, be sure to check your weights
   http://css-tricks.com/watch-your-font-weight/
@@ -4522,6 +4532,7 @@ h2, .h2 {
 
 h3, .h3 {
   font-size: 1.125em;
+  font-weight: bold;
 }
 
 h4, .h4 {
@@ -4618,6 +4629,9 @@ POSTS & CONTENT STYLES
   border-bottom: 1px solid #f8f9fa;
   padding: 1.5em;
 }
+.hentry header h1 {
+  margin: 0;
+}
 .hentry footer {
   padding: 1.5em;
   border-top: 1px solid #f8f9fa;
@@ -4651,7 +4665,7 @@ POSTS & CONTENT STYLES
 
 /* entry content */
 .entry-content {
-  padding: 1.5em 1.5em 0;
+  padding: 1.5em;
   /*
   image alignment on a screen this size may be
   a bit difficult. It's set to start aligning
@@ -4976,17 +4990,41 @@ COMMENT FORM STYLES
 /*********************
 SIDEBARS & ASIDES
 *********************/
+.sidebar.view-options p {
+  margin-top: 0;
+}
+
+.widget h3 {
+  margin-top: 0;
+  font-size: 1em;
+  font-weight: bold;
+}
 .widget ul li {
   /* deep nesting */
 }
+.widget a {
+  font-weight: bold;
+}
+.widget .gallery-imgs a {
+  display: block;
+  margin-bottom: 1em;
+}
+.widget .gallery-imgs a:last-child {
+  margin-bottom: 0;
+}
+.widget .gallery-imgs img {
+  border: 1px solid #666;
+  display: block;
+}
 
-.no-widgets {
+.no-widgets,
+.widget {
   background-color: #fff;
-  padding: 1.5em;
+  padding: 1em;
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 2px;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }
 
 /*********************
@@ -5113,7 +5151,8 @@ New Extras
   content: attr(title);
   color: #fff;
   background: #B6C951;
-  padding: 5px;
+  padding: 3px 5px;
+  border-radius: 5px;
   position: absolute;
   opacity: 0;
   transform: translate(-50%, -100%);
@@ -5327,7 +5366,7 @@ you can add resource intensive styles.
   SIDEBARS & ASIDES
   *********************/
   .sidebar {
-    margin-top: 2.2em;
+    margin-top: 0;
   }
 
   .widgettitle {
@@ -5335,10 +5374,6 @@ you can add resource intensive styles.
     margin-bottom: 0.75em;
   }
 
-  .widget {
-    padding: 0 10px;
-    margin: 2.2em 0;
-  }
   .widget ul li {
     margin-bottom: 0.75em;
     /* deep nesting */

@@ -129,18 +129,24 @@ function bones_scripts_and_styles() {
 		// ie-only style sheet
 		wp_register_style( 'bones-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
 
+		// BaguetteBox (lightbox) Script & Style
+		wp_register_style( 'fancybox', get_stylesheet_directory_uri() . '/library/js/libs/fancybox/jquery.fancybox.min.css', array(), '' );
+		wp_register_script( 'fancybox', get_stylesheet_directory_uri() . '/library/js/libs/fancybox/jquery.fancybox.min.js', array(), '', true );
+
+
     // comment reply script for threaded comments
     if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
 		  wp_enqueue_script( 'comment-reply' );
     }
 
 		//adding scripts file in the footer
-		wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
+		wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js?v=9324', array( 'jquery', 'fancybox' ), '99', true );
 
 		// enqueue styles and scripts
 		wp_enqueue_script( 'bones-modernizr' );
 		wp_enqueue_style( 'bones-stylesheet' );
 		wp_enqueue_style( 'bones-ie-only' );
+		wp_enqueue_style( 'fancybox' );
 
 		$wp_styles->add_data( 'bones-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
 
@@ -151,6 +157,7 @@ function bones_scripts_and_styles() {
 		*/
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'bones-js' );
+		wp_enqueue_script( 'baguettebox' );
 
 	}
 }
@@ -188,7 +195,7 @@ function bones_theme_support() {
 	// to add header image support go here: http://themble.com/support/adding-header-background-image-support/
 
 	// adding post format support
-	add_theme_support( 'post-formats',
+	/*add_theme_support( 'post-formats',
 		array(
 			'aside',             // title less blurb
 			'gallery',           // gallery of images
@@ -200,7 +207,7 @@ function bones_theme_support() {
 			'audio',             // audio
 			'chat'               // chat transcript
 		)
-	);
+	);*/
 
 	// wp menus
 	add_theme_support( 'menus' );
@@ -295,6 +302,156 @@ function bones_excerpt_more($more) {
 	// edit here if you like
 	return '...  <a class="excerpt-read-more" href="'. get_permalink( $post->ID ) . '" title="'. __( 'Read ', 'bonestheme' ) . esc_attr( get_the_title( $post->ID ) ).'">'. __( 'Read more &raquo;', 'bonestheme' ) .'</a>';
 }
+
+
+
+
+
+
+
+// Function that outputs the contents of the dashboard widget
+// This function does the actual outputting of the content of the widget
+function dashboard_widget_unpublished() {
+	// set the args
+	$args = array(
+		'post_type'			=> array( 'post' ),
+		'post_status'		=> array( 'pending', 'draft', 'future', 'private' ), // I wanted all statuses, except 'published' and 'auto-draft'
+		'posts_per_page'		=> -1,
+		'orderby'			=> 'date',
+		'order'				=> 'ASC'
+	);
+
+	// Standard query and loop
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) :
+		echo( '<table>' );
+		while ( $the_query->have_posts() ) : $the_query->the_post();
+		// Outputs the Post title (linked to the edit page,
+		// the post status,
+		// and a link to view the page
+		?>
+			<tr>
+				<td><a href="<?php echo( get_edit_post_link() ); ?>"><?php echo( get_the_title() ); ?></a></td>
+				<td><small><?php echo( get_post_type() ); ?></small></td>
+				<td><small><?php echo( get_post_status() ); ?></small></td>
+				<td><a class="linkview" href="<?php echo( get_permalink() ); ?>"> (view)</a></td>
+			</tr>
+		<?php
+		endwhile;
+		echo( '</table>' );
+		wp_reset_postdata();
+	else :
+		echo( '<p>No unfinished content.</p>' );
+	endif;
+}
+
+$depth = 0;
+$evenOdd = 'odd';
+
+function switchEvenOdd() {
+	global $evenOdd;
+	$evenOdd = ( $evenOdd == 'odd' ? 'even' : 'odd' );
+}
+
+function check_for_children( $post_id, $depth ) {
+	global $evenOdd;
+	$depth++;
+	$retStr = '';
+	$args = array(
+		'post_type'			=> 'page',
+		'posts_per_page'		=> -1,
+		'orderby'			=> 'menu_order',
+		'order'				=> 'ASC',
+		'post_parent'		=> $post_id
+	);
+
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) :
+		$retStr .= '<ul>';
+			while ( $the_query->have_posts() ) : $the_query->the_post();
+				$retStr .= '<li class="count-' . $evenOdd . '">';
+					$retStr .= '<a href="' . get_edit_post_link() . '">' . str_repeat( '&nbsp; ', $depth*4 ) . get_the_title() . '</a>';
+					$retStr .= '<a class="linkview" href="' . get_permalink() . '"> (view)</a>';
+					switchEvenOdd();
+					$retStr .= check_for_children( get_the_id(), $depth );
+				$retStr .= '</li>';
+			endwhile;
+		$retStr .= '</ul>';
+		wp_reset_postdata();
+	endif;
+	return $retStr;
+}
+function dashboard_widget_all_pages( $post, $callback_args ) {
+	global $evenOdd;
+	$args = array(
+		'post_type'			=> 'page',
+		'posts_per_page'	=> -1,
+		'orderby'			=> 'menu_order',
+		'order'				=> 'ASC',
+		'post_parent'		=> 0
+	);
+
+	$depth = 0;
+
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) :
+		echo( '<ul>' );
+			while ( $the_query->have_posts() ) : $the_query->the_post();
+				echo( '<li class="count-' . $evenOdd . '">' );
+					$retStr = '';
+					$retStr .= '<a href="' . get_edit_post_link() . '">' . str_repeat( '&nbsp; ', $depth*4 ) . get_the_title() . '</a>';
+					$retStr .= '<a class="linkview" href="' . get_permalink() . '"> (view)</a>';
+					switchEvenOdd();
+					$retStr .= check_for_children( get_the_id(), $depth );
+					echo( $retStr );
+				echo( '</li>' );
+			endwhile;
+		echo( '</ul>' );
+		wp_reset_postdata();
+	endif;
+}
+
+// This function does the actual outputting of the content of the widget
+function dashboard_widget_recently_updated() {
+	// set the args
+	$args = array(
+		'post_type'			=> array( 'post', 'page' ),
+		'posts_per_page'		=> 10,
+		'orderby'			=> 'modified',
+		'order'				=> 'DESC'
+	);
+
+	// Standard query and loop
+	$the_query = new WP_Query( $args );
+	if ( $the_query->have_posts() ) :
+		echo( '<ul>' );
+		while ( $the_query->have_posts() ) : $the_query->the_post();
+		// Outputs the Post title (linked to the edit page,
+		// the post status,d
+		// and a link to view the page
+		?>
+			<li>
+				<a href="<?php echo( get_edit_post_link() ); ?>"><?php echo( get_the_title() ); ?></a>
+				<a class="linkview" href="<?php echo( get_permalink() ); ?>"> (view)</a>
+			</li>
+		<?php
+		endwhile;
+		echo( '</ul>' );
+		wp_reset_postdata();
+	endif;
+}
+
+
+// Function used in the action hook
+function add_dashboard_widgets() {
+	wp_add_dashboard_widget( 'dashboard_widget_unfinished_posts', 'Unfinished Content', 'dashboard_widget_unpublished' );
+	wp_add_dashboard_widget( 'dashboard_widget_all_pages', 'All Pages', 'dashboard_widget_all_pages' );
+	wp_add_dashboard_widget( 'dashboard_widget_recently_updated', 'Recently Updated', 'dashboard_widget_recently_updated' );
+}
+
+// Register the new dashboard widget with the 'wp_dashboard_setup' action
+add_action('wp_dashboard_setup', 'add_dashboard_widgets' );
+
 
 
 
