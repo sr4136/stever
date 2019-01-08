@@ -82,6 +82,8 @@ LINK STYLES
 a, a:visited {
 	color: $link-color;
 
+	text-decoration: none;
+
 	/* on hover */
 	&:hover, &:focus {
 		color: $link-hover;
@@ -100,6 +102,13 @@ a, a:visited {
 		for mobile devices.
 		*/
 		-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
+	}
+}
+
+#container a {
+	/* on hover */
+	&:hover, &:focus {
+		text-decoration: underline;
 	}
 }
 
@@ -367,7 +376,7 @@ POSTS & CONTENT STYLES
 			}
 			td {
 				&:first-child {
-					text-align: center;
+					/* text-align: center; */
 				}
 			}
 		}
@@ -844,7 +853,7 @@ SIDEBARS & ASIDES
 			font-size: 1em;
 			font-weight: bold;
 		}
-	
+
 		ul {
 
 			li {
@@ -864,10 +873,10 @@ SIDEBARS & ASIDES
 		a {
 			font-weight: bold;
 		}
-		
+
 		.gallery-imgs {
 			a {
-				display: block;	
+				display: block;
 				margin-bottom: 1em;
 				&:last-child {
 					margin-bottom: 0;
@@ -878,8 +887,8 @@ SIDEBARS & ASIDES
 				display: block;
 			}
 		}
-		
- 
+
+
 	}
 
 	.no-widgets,
@@ -891,7 +900,7 @@ SIDEBARS & ASIDES
 		border-radius: 2px;
 		margin-bottom: 1em;
 	}
-	
+
 
 /*********************
 FOOTER STYLES
@@ -943,9 +952,26 @@ New Extras
 	background-color: $green;
 	color: $white;
 	text-align: center;
-	padding: 3px 0;
+	padding: 8px;
 	font-weight: bold;
 	margin-top: 30px;
+	margin-bottom: 0;
+}
+.year-divider + table > thead {
+	background-color: #E9EECA;
+}
+.year-divider + table tr:first-child{
+    background-color: #E9EECA;
+    font-weight: bold;
+}
+.year-divider + table td:nth-child(1){
+	 width: 50%;
+}
+.year-divider + table td:nth-child(2){
+	width: 30%;
+}
+.year-divider + table td:nth-child(3){
+    width: 20%;
 }
 
 #nav-container {

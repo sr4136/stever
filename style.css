@@ -597,7 +597,7 @@ p {
 
 /* makes the font 33% larger relative to the icon container */
 .fa-lg {
-  font-size: 1.33333em;
+  font-size: 1.3333333333em;
   line-height: 0.75em;
   vertical-align: -15%;
 }
@@ -619,13 +619,13 @@ p {
 }
 
 .fa-fw {
-  width: 1.28571em;
+  width: 1.2857142857em;
   text-align: center;
 }
 
 .fa-ul {
   padding-left: 0;
-  margin-left: 2.14286em;
+  margin-left: 2.1428571429em;
   list-style-type: none;
 }
 .fa-ul > li {
@@ -634,13 +634,13 @@ p {
 
 .fa-li {
   position: absolute;
-  left: -2.14286em;
-  width: 2.14286em;
-  top: 0.14286em;
+  left: -2.1428571429em;
+  width: 2.1428571429em;
+  top: 0.1428571429em;
   text-align: center;
 }
 .fa-li.fa-lg {
-  left: -1.85714em;
+  left: -1.8571428571em;
 }
 
 .fa-border {
@@ -4481,6 +4481,7 @@ LINK STYLES
 *********************/
 a, a:visited {
   color: #C1552D;
+  text-decoration: none;
   /* on hover */
   /* on click */
   /* mobile tap color */
@@ -4495,6 +4496,13 @@ a:link, a:visited:link {
   for mobile devices.
   */
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
+#container a {
+  /* on hover */
+}
+#container a:hover, #container a:focus {
+  text-decoration: underline;
 }
 
 /******************************************************************
@@ -4686,7 +4694,7 @@ POSTS & CONTENT STYLES
   background-color: #f8f9fa;
 }
 .entry-content tbody td:first-child {
-  text-align: center;
+  /* text-align: center; */
 }
 .entry-content td {
   padding: 7px;
@@ -5057,9 +5065,31 @@ New Extras
   background-color: #B6C951;
   color: #fff;
   text-align: center;
-  padding: 3px 0;
+  padding: 8px;
   font-weight: bold;
   margin-top: 30px;
+  margin-bottom: 0;
+}
+
+.year-divider + table > thead {
+  background-color: #E9EECA;
+}
+
+.year-divider + table tr:first-child {
+  background-color: #E9EECA;
+  font-weight: bold;
+}
+
+.year-divider + table td:nth-child(1) {
+  width: 50%;
+}
+
+.year-divider + table td:nth-child(2) {
+  width: 30%;
+}
+
+.year-divider + table td:nth-child(3) {
+  width: 20%;
 }
 
 #nav-container {
